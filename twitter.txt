@@ -1,0 +1,9 @@
+# bAtULeEoYc5pagNLrVSj5w
+# Consumer secret
+PRhYevhq4Q9nt0YcnQzexbi4BrypxjTn4zgfB5Cp0
+# Request token URL
+http://twitter.com/oauth/request_token
+# Access token URL
+http://twitter.com/oauth/access_token
+# Authorize URL
+http://twitter.com/oauth/authorize

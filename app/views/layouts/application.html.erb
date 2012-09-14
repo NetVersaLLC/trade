@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trade</title>
+  <%= csrf_meta_tag %>
+  <link href='http://fonts.googleapis.com/css?family=Neuton' rel='stylesheet' type='text/css'>
+  <script language="JavaScript" src="http://j.maxmind.com/app/geoip.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
+  <%= javascript_include_tag :defaults %>
+  <%= stylesheet_link_tag :all %>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24801433-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+
+<% if user_signed_in? %>
+  <div class="menu">Signed in as: <%= current_user.email %> | <%= link_to 'Sign Out', '/users/sign_out' %></div>
+<% end %>
+<div id="logo">
+  <a href="/authentications?mode=join"><img id="join" src="/images/join.png" alt="Join" /></a>
+  <a href="/about"><img id="about" src="/images/about.png" alt="About" /></a>
+  <a href="/authentications"><img id="members" src="/images/members.png" alt="Members Login" /></a>
+  <div id="instructions">Find local Bitcoin traders in your area.</div>
+</div>
+<div id="content">
+  <%= yield %>
+<div id="bottom">
+  <p>
+    <a href="/tos">Terms of Service</a> | <a href="/privacy_policy">Privacy Policy</a> | <a href="/transactions">Transaction Guide</a> | <a href="/thanks">Thanks</a><br />
+  <div id="copyright">Copyright &copy; 2011 <a href="http://assuredwebdevelopment">Assured Web Development</a> and Jonathan Jeffus<br /> Donations?:  12SW1w5mvp9ExwMbM9kMwTbN4D9e75KQDr</div>
+  </p>
+</div>
+</body>
+</div>
+</html>
