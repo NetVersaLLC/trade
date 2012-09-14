@@ -2,7 +2,11 @@
 
 <div class="item">
 <% if user_signed_in? %>
+   <%- if current_user.name.present? %>
+  <h2>Signed in as: <%= current_user.name %></h2>
+  <%- else %>
   <h2>Signed in as: <%= current_user.email %></h2>
+    <%- end %>
 <% else %>
 <% if @mode == 'join' %>
   <h1>Sign Up</h1>
@@ -10,6 +14,40 @@
   <h1>Sign In</h1>
 <% end %>
 <% end %>
+
+<%- unless  user_signed_in? %>
+<% if @mode == 'join' %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+  <p><%= f.label :email %><br />
+  <%= f.text_field :email %></p>
+
+  <p><%= f.label :password %><br />
+  <%= f.password_field :password %></p>
+
+  <p><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %></p>
+
+  <p><%= f.submit "Sign up" %></p>
+  <% end  %>
+<% else %>
+ <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <p><%= f.label :email %><br />
+  <%= f.text_field :email %></p>
+
+  <p><%= f.label :password %><br />
+  <%= f.password_field :password %></p>
+
+  <% if devise_mapping.rememberable? -%>
+    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+  <% end -%>
+
+  <p><%= f.submit "Sign in" %></p>
+<% end %>
+
+<% end %>
+
+<%- end %>
 
 <% if @authentications %>
   <% unless @authentications.empty? %>
@@ -60,6 +98,18 @@
   <p>Enter as many or as few contact methods below. Remember, these will be made available to your fellow traders as a method to contact you. We take every precaution to ensure your contact information cannot be abused or harvested.</p>
   <div class="left">
   <% form_for current_user, :remote => true, :method => 'put' do |f| %>
+  <p><%= f.label :email %><br />
+    <%= f.text_field :email, :autocomplete=>"off"  %> <br />
+    <small>Your email.</small>
+  </p>
+  <%- if current_user.email_required? %>
+  <p><%= f.label :password %><br />
+    <%= f.password_field :password %><br />
+    <small>Your password.</small></p>
+  <p><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %><br />
+    <small>Password confirmation.</small></p>    
+  <%- end %>
   <p><%= f.label :name %><br />
     <%= f.text_field :name %><br />
     <small>Your name.</small></p>

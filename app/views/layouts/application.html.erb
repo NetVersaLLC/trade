@@ -26,7 +26,11 @@
 <body>
 
 <% if user_signed_in? %>
+  <%- if current_user.name.present? %>
+  <div class="menu">Signed in as: <%= current_user.name %> | <%= link_to 'Sign Out', '/users/sign_out' %></div>
+  <%- else %>
   <div class="menu">Signed in as: <%= current_user.email %> | <%= link_to 'Sign Out', '/users/sign_out' %></div>
+    <%- end %>
 <% end %>
 <div id="logo">
   <a href="/authentications?mode=join"><img id="join" src="/images/join.png" alt="Join" /></a>
