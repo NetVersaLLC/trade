@@ -9,4 +9,6 @@ class StaticController < ApplicationController
   end
   def thanks
   end
+  def under_construction
+  end
 end

@@ -1,0 +1,46 @@
+!!!
+%html
+  %head
+    %title TradeBitcoin.com
+    %link{:href => "http://fonts.googleapis.com/css?family=Neuton", :rel => "stylesheet", :type => "text/css"}/
+    %script{:language => "JavaScript", :src => "http://j.maxmind.com/app/geoip.js"}
+    %script{:src => "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"}
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    - if user_signed_in?
+      - if current_user.name.present?
+        .menu
+          Signed in as: #{current_user.name} | #{link_to 'Sign Out', '/users/sign_out'}
+      - else
+        .menu
+          Signed in as: #{current_user.email} | #{link_to 'Sign Out', '/users/sign_out'}
+    #logo
+      -# %a{:href => "/authentications?mode=join"}
+      %a{:href => "/under_construction"}
+        = image_tag 'join.png', :alt => 'Join', :id => :join
+      %a{:href => "/about"}
+        = image_tag 'about.png', :alt => 'About', :id => :about
+      -# %a{:href => "/authentications"}
+      %a{:href => "/under_construction"}
+        = image_tag 'members.png', :alt => 'Members Login', :id => 'members'
+      #instructions Find local Bitcoin traders in your area.
+    #content
+      = yield
+      #bottom
+        %p
+          %a{:href => "/tos"} Terms of Service
+          |
+          %a{:href => "/privacy_policy"} Privacy Policy
+          |
+          %a{:href => "/transactions"} Transaction Guide
+          |
+          %a{:href => "/thanks"} Thanks
+          %br/
+        #copyright
+          Copyright &copy; 2011
+          %a{:href => "http://assuredwebdevelopment"} Assured Web Development
+          and Jonathan Jeffus
+          %br/
+          Donations?:  12SW1w5mvp9ExwMbM9kMwTbN4D9e75KQDr

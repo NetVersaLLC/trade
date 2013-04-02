@@ -1,4 +1,0 @@
-App Name:Trade Bitcoin
-App URL:http://tradebitcoin.com/
-App ID:139631376098009
-App Secret:190c8aecfacbb7da341f51e04f9e6233

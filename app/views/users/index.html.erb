@@ -9,8 +9,8 @@
 </script>
 <div id="map_canvas"></div>
 <div id="controls">
-  <form onsubmit="searchIt(); return false;">
+  <form id="searchIt" onsubmit="return false;">
     <input type="text" name="search" id="search" value="  Address..." onfocus="if (this.value == '  Address...') { this.style.color = '#000'; this.value=''; }" style="color: #999;" />
-    <img id="go" src="/images/go.png" onclick="searchIt();" alt="Go" title="Search for traders near this address or intersection." />
+    <img id="go" src="/assets/go.png" alt="Go" title="Search for traders near this address or intersection." />
   </form>
 </div>

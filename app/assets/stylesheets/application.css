@@ -1,0 +1,266 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+body {
+  font-family: 'Neuton', Times, "Times New Roman", serif;
+  font-size: 14px;
+}
+img {
+  border: 0px;
+}
+hr {
+  border: 0px;
+  width: 800px;
+  float: left;
+  clear: both;
+}
+a, a:hover, a:visited {
+  color: #000;
+}
+em {
+  font-style: normal;
+  font-size: 22px;
+  font-weight: bold;
+  color: #a00;
+}
+h1 {
+  font-size: 20px;
+}
+h3 {
+  text-align: center;
+}
+h4 {
+  display: inline;
+  font-size: 28px;
+  font-weight: bold;
+  color: #0a0;
+}
+
+#notice {
+  color: green;
+}
+
+#content {
+  width: 800px;
+  margin: 0px auto;
+}
+
+#error_explanation {
+  width: 450px;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+#map_canvas {
+  width: 800px;
+  height: 500px;
+  margin: 0px auto;
+  clear: both;
+}
+#logo {
+  background-image: url(/assets/logo.png);
+  background-repeat: no-repeat;
+  width: 800px;
+  margin: 0px auto;
+  font-size: 24px;
+  height: 130px;
+  /* font-family: 'Reenie Beanie', Times, "Times New Roman", serif; */
+}
+#logoimg {
+  float: left;
+}
+#instructions {
+  position: relative;
+  font-size: 15px;
+  top: 60px;
+  left: 115px;
+}
+#controls {
+  width: 800px;
+  height: 65px;
+  margin: 0px auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#search {
+  float: left;
+  width: 660px;
+  height: 60px;
+  font-size: 38px;
+}
+#go {
+  float: right;
+  width: 103px;
+  height: 60px;
+}
+#join {
+  float: right;
+  display: block;
+  width: 132px;
+  height: 62px;
+  margin: 10px;
+  margin-right: 0px;
+}
+#about {
+  float: right;
+  display: block;
+  width: 182px;
+  height: 62px;
+  margin: 10px;
+}
+#members {
+  float: right;
+  clear: right;
+  display: block;
+  width: 132px;
+  height: 39px;
+}
+#bottom {
+  clear: both;
+  float: left;
+  width: 800px;
+  text-align: center;
+  font-size: 15px;
+}
+#copyright {
+  margin-top: 5px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.menu {
+  margin: 0px auto;
+  font-size: 12pt;
+  width: 800px;
+  text-align: right;
+}
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+.authentications {
+  margin-bottom: 30px;
+}
+
+.authentication {
+  width: 160px;
+  height: 41px;
+  float: left;
+  background-color: #EEE;
+  border: solid 1px #999;
+  padding: 5px 10px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.authentication .remove {
+  text-decoration: none;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  color: #333;
+  padding: 2px 4px;
+  font-size: 10px;
+}
+
+.authentication .remove:hover {
+  color: #CCC;
+  background-color: #777;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+
+.authentication img {
+  float: left;
+  margin-right: 10px;
+}
+
+.authentication .provider {
+  font-weight: bold;
+}
+
+.authentication .uid {
+  color: #666;
+  font-size: 11px;
+}
+
+.auth_provider img {
+  display: block;
+}
+
+.auth_provider {
+  float: left;
+  text-decoration: none;
+  margin-right: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.item {
+  float: left;
+  clear: both;
+}
+
+.left {
+  float: left;
+  clear: left;
+  padding: 15px;
+}
+.right {
+  float: left;
+  clear: right;
+  padding: 15px;
+}
+
+.gravatar {
+  float: left;
+  margin: 0px;
+}
+
+.info td {
+  font-weight: bold;
+}
+
+.boxContent {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+.stack {
+  float: left;
+  clear: both;
+  width: 260px;
+}
+
+

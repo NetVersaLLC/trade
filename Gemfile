@@ -1,39 +1,30 @@
-source 'http://rubygems.org'
-
-gem 'rails', '3.0.3'
+source 'https://rubygems.org'
+gem 'rails', '4.0.0.beta1'
 gem 'mysql2'
-gem 'will_paginate', '3.0.pre2'
+group :assets do
+  gem 'sass-rails',   '~> 4.0.0.beta1'
+  gem 'coffee-rails', '~> 4.0.0.beta1'
+  gem 'therubyracer', platforms: :ruby
+  gem 'uglifier', '>= 1.0.3'
+end
+group :test do
+  gem "cucumber-rails"
+end
+
 gem 'jquery-rails'
-gem 'devise'
-gem 'omniauth'
-gem 'geoip'
-gem 'mongrel', '1.2.0.pre2'
-gem 'xml-simple'
-gem 'json'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+gem 'jquery-ui-rails'
+gem "unicorn", ">= 4.3.1"
+gem "haml-rails", ">= 0.4"
+gem "html2haml", ">= 1.0.1", :group => :development
+gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
+gem "database_cleaner", ">= 1.0.0.RC1", :group => :test
+gem "email_spec", ">= 1.4.0", :group => :test
+gem "launchy", ">= 2.2.0", :group => :test
+gem "capybara", ">= 2.0.3", :group => :test
+gem "factory_girl_rails", ">= 4.2.0", :group => [:development, :test]
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => "rails4"
+gem "quiet_assets", ">= 1.0.2", :group => :development
+gem "better_errors", ">= 0.7.2", :group => :development
+gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri_19, :rbx]
+gem 'settingslogic'
+gem 'capistrano'
