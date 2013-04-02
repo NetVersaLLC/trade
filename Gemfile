@@ -10,6 +10,14 @@ end
 group :test do
   gem "cucumber-rails"
 end
+group :development do
+  gem 'capistrano'
+  gem "capistrano-db-tasks", require: false
+  gem 'rvm-capistrano'
+  gem 'rb-fsevent'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -24,7 +32,4 @@ gem "capybara", ">= 2.0.3", :group => :test
 gem "factory_girl_rails", ">= 4.2.0", :group => [:development, :test]
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => "rails4"
 gem "quiet_assets", ">= 1.0.2", :group => :development
-gem "better_errors", ">= 0.7.2", :group => :development
-gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri_19, :rbx]
 gem 'settingslogic'
-gem 'capistrano'

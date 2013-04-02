@@ -1,25 +1,112 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'capistrano-db-tasks'
+require 'bundler/capistrano'
+require 'rvm/capistrano'
+set :rvm_type, :user
+set :db_local_clean, true
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :deploy_to, '/home/trade/app'
+set :keep_releases, 5
+set :default_shell, "bash -l"
+set :rvm_ruby_string, 'ruby-2.0.0-p0'
+set :rvm_type, :user
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :application, 'trade'
+set :scm        , :git
+set :repository , 'git@github.com:jjeffus/trade.git'
+set :user       , 'trade'
+set :use_sudo   , false
+set :ssh_options, {:forward_agent => true}
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+def production_prompt
+  puts "\n\e[0;31m   ######################################################################"
+  puts "   #\n   #       Are you REALLY sure you want to deploy to production?"
+  puts "   #\n   #               Enter y/N + enter to continue\n   #"
+  puts "   ######################################################################\e[0m\n"
+  proceed = STDIN.gets[0..0] rescue nil
+  exit unless proceed == 'y' || proceed == 'Y'
+end
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+def staging_prompt
+  puts "\n\e[0;31m   ######################################################################"
+  puts "   #\n   #       Deploy to staging?     "
+  puts "   ######################################################################\e[0m\n"
+  proceed = STDIN.gets[0..0] rescue nil
+  exit unless proceed == 'y' || proceed == 'Y'
+end
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+desc 'Run tasks in new production enviroment.'
+task :production do
+  production_prompt
+  set  :rails_env ,'production'
+  set  :branch    ,'production'
+  set  :host      ,'crowdgrip.com'
+  role :app       ,host
+  role :web       ,host
+  role :db        ,host, :primary => true
+end
+
+task :staging do
+  staging_prompt
+  set  :rails_env ,'staging'
+  set  :branch    ,'staging'
+  set  :host      ,'staging.tradebitcoin.com'
+  role :app       ,host
+  role :web       ,host
+  role :db        ,host, :primary => true
+end
+
+
+namespace :deploy do
+  #desc 'Restarting server'
+  #task :restart, :roles => :app, :except => { :no_release => true } do
+    #run 'rvmsudo /etc/init.d/thin restart'
+  #end
+
+  #desc 'Stopping server'
+  #task :stop, :roles => :app do
+    #run 'rvmsudo /etc/init.d/thin stop'
+  #end
+
+  #desc 'Starting server'
+  #task :start, :roles => :app do
+    #run 'rvmsudo /etc/init.d/thin start'
+  #end
+
+  desc 'Running migrations'
+  task :migrations, :roles => :db do
+    run "cd #{release_path} && bundle exec rake db:migrate RAILS_ENV=#{rails_env}"
+  end
+
+  desc 'Building assets'
+  task :assets do
+    run "cd #{release_path} && bundle exec rake assets:precompile"
+  end
+end
+
+namespace :nginx do
+  desc 'Reload Nginx'
+  task :reload do
+    sudo '/etc/init.d/nginx reload'
+  end
+end
+
+namespace :thin do
+  desc 'Restart Thin'
+  task :restart do
+    run 'rvmsudo /etc/init.d/trade restart'
+  end
+end
+
+task :after_update_code do
+  %w{labels}.each do |share|
+    run "ln -s #{shared_path}/#{share} #{release_path}/#{share}"
+  end
+end
+
+after 'deploy'           , 'deploy:migrations'
+after 'deploy:migrations', 'deploy:assets'
+after 'deploy:assets',     'after_update_code'
+# after 'after_update_code', 'nginx:reload'
+# after 'nginx:reload'     , 'thin:restart'
+
+require './config/boot'

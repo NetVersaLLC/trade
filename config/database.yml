@@ -32,5 +32,5 @@ production:
   reconnect: false
   database: trade
   pool: 5
-  username: root
-  password: balls
+  username: trade
+  password: FPVsGkrS0W
