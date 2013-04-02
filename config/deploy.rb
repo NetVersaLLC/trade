@@ -107,7 +107,7 @@ end
 after 'deploy'           , 'after_update_code'
 after 'after_update_code', 'deploy:migrations'
 after 'deploy:migrations', 'deploy:assets'
-after 'deploy:assets',     
+# after 'deploy:assets',
 # after 'after_update_code', 'nginx:reload'
 # after 'nginx:reload'     , 'thin:restart'
 
