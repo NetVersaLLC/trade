@@ -101,11 +101,13 @@ task :after_update_code do
   %w{labels}.each do |share|
     run "ln -s #{shared_path}/#{share} #{release_path}/#{share}"
   end
+  run "ln -s #{shared_path}/application.yml #{release_path}/config/application.yml"
 end
 
-after 'deploy'           , 'deploy:migrations'
+after 'deploy'           , 'after_update_code'
+after 'after_update_code', 'deploy:migrations'
 after 'deploy:migrations', 'deploy:assets'
-after 'deploy:assets',     'after_update_code'
+after 'deploy:assets',     
 # after 'after_update_code', 'nginx:reload'
 # after 'nginx:reload'     , 'thin:restart'
 
