@@ -1,0 +1,168 @@
+/ authentications/index.html.erb
+.item
+  - if user_signed_in?
+    - if current_user.name.present?
+      %h2
+        Signed in as: #{current_user.name}
+    - else
+      %h2
+        Signed in as: #{current_user.email}
+  - else
+    - if @mode == 'join'
+      %h1 Sign Up
+    - else
+      %h1 Sign In
+  - unless  user_signed_in?
+    - if @mode == 'join'
+      = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+        %p
+          = f.label :email
+          %br/
+          = f.text_field :email
+        %p
+          = f.label :password
+          %br/
+          = f.password_field :password
+        %p
+          = f.label :password_confirmation
+          %br/
+          = f.password_field :password_confirmation
+        %p= f.submit "Sign up"
+    - else
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+        %p
+          = f.label :email
+          %br/
+          = f.text_field :email
+        %p
+          = f.label :password
+          %br/
+          = f.password_field :password
+        - if devise_mapping.rememberable?
+          %p
+            = f.check_box :remember_me
+            = f.label :remember_me
+        %p= f.submit "Sign in"
+  - if @authentications
+    - unless @authentications.empty?
+      %h3 You can sign in to this account using:
+      .authentications
+        - for authentication in @authentications
+          .authentication
+            = image_tag "#{authentication.provider}_32.png", :size => "32x32"
+            .provider= authentication.provider_name
+            .uid= authentication.provider_uid
+            = link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove"
+        .clear
+    %br/
+.item
+  %h3 Add another service to sign in with:
+  - else
+.item
+  %h3 Login to this site using one of these services:
+  %a.auth_provider{:href => "/auth/twitter"}
+    = image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter"
+    Twitter
+  %a.auth_provider{:href => "/auth/facebook"}
+    = image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook"
+    Facebook
+  .clear
+- if user_signed_in?
+  .item
+    %h3 Additional contact methods:
+    %p Enter as many or as few contact methods below. Remember, these will be made available to your fellow traders as a method to contact you. We take every precaution to ensure your contact information cannot be abused or harvested.
+    .left
+      - form_for current_user, :remote => true, :method => 'put' do |f|
+        %p
+          = f.label :email
+          %br/
+          = f.text_field :email, :autocomplete=>"off"
+          %br/
+          %small Your email.
+        - if current_user.email_required?
+          %p
+            = f.label :password
+            %br/
+            = f.password_field :password
+            %br/
+            %small Your password.
+          %p
+            = f.label :password_confirmation
+            %br/
+            = f.password_field :password_confirmation
+            %br/
+            %small Password confirmation.
+        %p
+          = f.label :name
+          %br/
+          = f.text_field :name
+          %br/
+          %small Your name.
+        %p
+          = f.label :address
+          %br/
+          = f.text_field :address, :onchange => 'showUpdate();'
+          %br/
+          %small
+            Enter the physical address, intersection or lat/lon
+            %br/
+            where you would meet for trades.
+        %p
+          = f.label :phone
+          %br/
+          = f.text_field :phone
+          %br/
+          %small Preferred phone number.
+        %p
+          = f.label :skype
+          %br/
+          = f.text_field :skype
+          %br/
+          %small
+            %a{:href => "http://www.skype.com", :target => "_blank"} Skype
+            name.
+        %p
+          = f.label :aim
+          %br/
+          = f.text_field :aim
+          %br/
+          %small
+            %a{:href => "http://www.aim.com", :target => "_blank"} AIM
+            Account.
+        %p
+          = f.label :yim
+          %br/
+          = f.text_field :yim
+          %br/
+          %small
+            %a{:href => "http://messenger.yahoo.com/", :target => "_blank"} Yahoo Messenger
+            account.
+        %p
+          = f.label :jabber
+          %br/
+          = f.text_field :jabber
+          %br/
+          %small
+            %a{:href => "http://register.jabber.org/", :target => "_blank"} Jabber
+            account.
+        %a{:href => "javascript:trySubmit();"}
+          %img{:alt => "Save", :border => "0", :src => "/images/save.png"}/
+        = f.hidden_field :latitude
+        = f.hidden_field :longitude
+    .right
+      :javascript
+        var marker = null;
+        $(function() {
+          whereami();
+          initialize();
+          if ($.trim($('#user_address').val()) == '' && city != null) {
+            $('#user_address').val( city + ', ' + country );
+            $('#user_latitude').val( latitude );
+            $('#user_longitude').val( longitude );
+          }
+          address = $('#user_address').val();
+          $('form').bind('ajax:success', success).bind('ajax:failure', failure);
+          marker = addMarker(latitude, longitude, "My Location");
+        });
+      #map_canvas{:style => "width: 400px"}
+      #status
