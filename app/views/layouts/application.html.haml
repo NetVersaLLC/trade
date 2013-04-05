@@ -12,18 +12,18 @@
     - if user_signed_in?
       - if current_user.name.present?
         .menu
-          Signed in as: #{current_user.name} | #{link_to 'Sign Out', '/users/sign_out'}
+          Signed in as: #{current_user.name} | #{link_to 'Sign Out', destroy_user_session_path, :method => :delete}
       - else
         .menu
-          Signed in as: #{current_user.email} | #{link_to 'Sign Out', '/users/sign_out'}
+          Signed in as: #{current_user.email} | #{link_to 'Sign Out', destroy_user_session_path, :method => :delete}
     #logo
-      -# %a{:href => "/authentications?mode=join"}
-      %a{:href => "/under_construction"}
+      -#%a{:href => "/under_construction"}
+      %a{:href => "/authentications?mode=join"}
         = image_tag 'join.png', :alt => 'Join', :id => :join
       %a{:href => "/about"}
         = image_tag 'about.png', :alt => 'About', :id => :about
-      -# %a{:href => "/authentications"}
-      %a{:href => "/under_construction"}
+      -#%a{:href => "/under_construction"}
+      %a{:href => "/authentications"}
         = image_tag 'members.png', :alt => 'Members Login', :id => 'members'
       #instructions Find local Bitcoin traders in your area.
     #content

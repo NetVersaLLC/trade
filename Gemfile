@@ -33,3 +33,6 @@ gem "factory_girl_rails", ">= 4.2.0", :group => [:development, :test]
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => "rails4"
 gem "quiet_assets", ">= 1.0.2", :group => :development
 gem 'settingslogic'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
