@@ -3,12 +3,14 @@ class AuthenticationsController < ApplicationController
     @authentications = current_user.authentications if current_user
     @mode = params[:mode]
   end
+  
   def destroy
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
     flash[:notice] = 'Removed authentication provider.'
     redirect_to authentications_url
   end
+
   def create
     auth = request.env['omniauth.auth']
     authentication = Authentication.find_by_provider_and_uid(auth['provider'],auth['uid'])

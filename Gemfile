@@ -29,9 +29,10 @@ gem "database_cleaner", ">= 1.0.0.RC1", :group => :test
 gem "email_spec", ">= 1.4.0", :group => :test
 gem "launchy", ">= 2.2.0", :group => :test
 gem "capybara", ">= 2.0.3", :group => :test
-gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => "rails4"
 gem "quiet_assets", ">= 1.0.2", :group => :development
 gem 'settingslogic'
-gem 'omniauth'
+
+#AUTH
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => "rails4"
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'

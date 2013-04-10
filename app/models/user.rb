@@ -2,17 +2,21 @@ class User < ActiveRecord::Base
   has_many :authentications
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable#, :validatable
   validates :email, :uniqueness => true,  :presence => true, :if => :email_required?  
   validates :password, :presence => true, :if => :password_required?
   validates_confirmation_of :password, :if => :password_required?
-  # Setup accessible (or protected) attributes for your model
 
-  def apply_omniauth(auth)
-    self.email = auth['user_info']['email'] if self.email.blank?
-    self.name = auth['user_info']['name'] if self.name.blank?
-    authentications.build(:provider => auth['provider'], :uid => auth['uid'])
+  def self.from_omniauth(auth_data)
+    auth = Authentication.where(auth_data.slice(:provider, :uid)).first_or_create! do |authentication|
+      authentication.provider = auth_data.provider
+      authentication.uid = auth_data.uid
+      user = User.new(name: auth_data.info.name)
+      user.save(validate: false)
+      authentication.user = user
+    end
+    auth.user
   end
 
   def email_required?

@@ -271,7 +271,6 @@ DEPENDENCIES
   jquery-ui-rails
   launchy (>= 2.2.0)
   mysql2
-  omniauth
   omniauth-facebook
   omniauth-twitter
   quiet_assets (>= 1.0.2)
