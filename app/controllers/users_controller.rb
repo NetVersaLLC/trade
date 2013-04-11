@@ -62,10 +62,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(permitted_params)
         format.js  { head :ok }
+        format.html {redirect_to :back, notice: "Profile updated"}
       else
         format.js  { render :json => @user.errors, :status => :unprocessable_entity }
+        format.html {redirect_to :back, error: "There were errors during profile updating"}
       end
     end
   end
@@ -79,6 +81,13 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(users_url) }
       format.js  { head :ok }
+    end
+  end
+
+  private 
+  def permitted_params
+    if User.find(params[:id]) == current_user
+      params.require(:user).permit(:name, :email)
     end
   end
 end
