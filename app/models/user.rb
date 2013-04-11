@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  blogs
+  
   has_many :authentications
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

@@ -1,4 +1,7 @@
 Trade::Application.routes.draw do
+  
+  mount Blogit::Engine => "/blog"
+
   get '/auth/:provider/callback' => 'authentications#create'
   devise_for :users, :controllers => {
                                       :registrations => 'registrations',
@@ -20,4 +23,11 @@ Trade::Application.routes.draw do
     root :to => 'users#edit'
   end
   root :to => "users#index"
+end
+
+Blogit::Engine.routes.draw do
+  devise_for :users, :controllers => {
+                                      :registrations => 'registrations',
+                                      :omniauth_callbacks => 'omniauth_callbacks'
+                                     }
 end

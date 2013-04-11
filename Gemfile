@@ -32,6 +32,8 @@ gem "capybara", ">= 2.0.3", :group => :test
 gem "quiet_assets", ">= 1.0.2", :group => :development
 gem 'settingslogic'
 
+gem 'blogit', :git => "git@github.com:Fodoj/blogit.git", :branch => "rails4"
+
 #AUTH
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => "rails4"
 gem 'omniauth-twitter'
