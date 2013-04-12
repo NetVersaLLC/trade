@@ -9,13 +9,19 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    - if user_signed_in?
-      - if current_user.name.present?
-        .menu
+    .menu
+      - if user_signed_in?
+        - if current_user.name.present?
           Signed in as: #{current_user.name} | #{link_to 'Sign Out', destroy_user_session_path, :method => :delete}
-      - else
-        .menu
+        - else
           Signed in as: #{current_user.email} | #{link_to 'Sign Out', destroy_user_session_path, :method => :delete}
+        |
+        = link_to "Edit account", edit_user_path(current_user)
+      - else
+        = link_to "Sign in", new_user_session_path
+        |
+        = link_to "Sign up", new_user_registration_path
+
     #logo
       %a{:href => "/under_construction"}
       -# %a{:href => "/authentications?mode=join"}
@@ -26,8 +32,17 @@
       -#%a{:href => "/authentications"}
         = image_tag 'members.png', :alt => 'Members Login', :id => 'members'
       #instructions Find local Bitcoin traders in your area.
+  
     #content
+      - unless flash.empty? 
+        - flash.each do |name, msg|
+          = raw(msg)
       = yield
+
+      %ul
+        - User.all.each do |u|
+          %li= u.name
+          
       #bottom
         %p
           %a{:href => "/tos"} Terms of Service

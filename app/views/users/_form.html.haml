@@ -1,6 +1,7 @@
 = form_for(@user) do |f|
   = f.text_field :name
   = f.text_field :email
+  = f.password_field :current_password, placeholder: "Current password"
   - if @user.errors.any?
     #error_explanation
       %h2

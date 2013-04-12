@@ -60,14 +60,19 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-
     respond_to do |format|
       if @user.update_attributes(permitted_params)
         format.js  { head :ok }
-        format.html {redirect_to :back, notice: "Profile updated"}
+        format.html do 
+          flash[:notice] = "You updated your account successfully."
+          redirect_to :back
+        end
       else
         format.js  { render :json => @user.errors, :status => :unprocessable_entity }
-        format.html {redirect_to :back, error: "There were errors during profile updating"}
+        format.html do 
+          flash[:error] = "There were errors during profile updating"
+          redirect_to :back
+        end
       end
     end
   end
@@ -87,7 +92,7 @@ class UsersController < ApplicationController
   private 
   def permitted_params
     if User.find(params[:id]) == current_user
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :current_password)
     end
   end
 end
