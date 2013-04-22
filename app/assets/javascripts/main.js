@@ -136,6 +136,13 @@ function initialize() {
     maxWidth: 400,
     content: ''
   });
+  var timeout = false;
+  google.maps.event.addListener(map, 'center_changed', function(){
+    if (timeout !== false) {
+      window.clearTimeout(timeout);
+    }
+    timeout = window.setTimeout(showUpdate, 500);
+  });
 }
 
 function userAddress() {
@@ -167,7 +174,10 @@ function codeAddress(address, callback) {
   });
 }
 function showUpdate() {
-
+  var lat_lon = map.getCenter();
+  latitude = lat_lon.lat();
+  longitude = lat_lon.lng();
+  showResults();
 }
 function success(event, data, status, xhr) {
   $("#status").html('<h1 style="color: green">Profile Updated</h1>');
