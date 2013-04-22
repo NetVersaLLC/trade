@@ -8,7 +8,17 @@ class UsersController < ApplicationController
     @la = params[:la]
     @lo = params[:lo]
     if @la != nil and @lo != nil and @la =~ /[-+]?(?:\d*\.\d+|\d+)/ and @lo =~ /[-+]?(?:\d*\.\d+|\d+)/
-      @users = User.find_by_sql("SELECT id,name, address, phone, aim, yim,  jabber, skype, latitude, longitude, md5(trim(lower(email))) as gravatar, ((2 * 3960 * ATAN2(SQRT(POWER(SIN((RADIANS(#{@la} - latitude))/2), 2) + COS(RADIANS(latitude)) * COS(RADIANS(#{@la} )) * POWER(SIN((RADIANS(#{@lo} - longitude))/2), 2)),SQRT(1-(POWER(SIN((RADIANS(#{@la} - latitude))/2), 2) + COS(RADIANS(latitude)) * COS(RADIANS(#{@la})) * POWER(SIN((RADIANS(#{@lo} - longitude))/2), 2)))))) AS distance FROM users where latitude is not null and longitude is not null ORDER BY distance LIMIT 40")
+      @users = User.find_by_sql([<<SQL, {:la => @la, :lo => @lo}])
+SELECT
+  id, name, address, phone, aim, yim,  jabber, skype, latitude, longitude,
+  md5(trim(lower(email))) as gravatar,
+  ((2 * 3960 * ATAN2(SQRT(POWER(SIN((RADIANS(:la - latitude))/2), 2) + COS(RADIANS(latitude)) * COS(RADIANS(:la)) *
+  POWER(SIN((RADIANS(:lo - longitude))/2), 2)),SQRT(1-(POWER(SIN((RADIANS(:la - latitude))/2), 2) + COS(RADIANS(latitude)) * COS(RADIANS(:la)) * POWER(SIN((RADIANS(:lo - longitude))/2), 2)))))) AS distance
+FROM users
+WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+ORDER BY distance
+LIMIT 40
+SQL
     end
 
     respond_to do |format|
