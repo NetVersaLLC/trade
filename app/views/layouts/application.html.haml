@@ -39,10 +39,6 @@
           = raw(msg)
       = yield
 
-      %ul
-        - User.all.each do |u|
-          %li= u.name
-          
       #bottom
         %p
           %a{:href => "/tos"} Terms of Service
