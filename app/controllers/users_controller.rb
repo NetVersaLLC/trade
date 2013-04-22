@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :check_user, only: [:edit, :update]
+
   # GET /users
   def index
     #db = GeoIP::City.new(RAILS_ROOT + '/GeoLiteCity.dat', :filesystem)
@@ -35,13 +37,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.xml
   def create
     @user = User.new(params[:user])
 
@@ -56,10 +54,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.xml
   def update
-    @user = User.find(params[:id])
     respond_to do |format|
       if @user.update_attributes(permitted_params)
         format.js  { head :ok }
@@ -77,8 +72,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -92,7 +85,12 @@ class UsersController < ApplicationController
   private 
   def permitted_params
     if User.find(params[:id]) == current_user
-      params.require(:user).permit(:name, :email, :current_password)
+      params.require(:user).permit(:name, :email, :current_password, :address, :phone, :skype, :aim, :yim, :jabber)
     end
+  end
+
+  def check_user
+    @user = User.find(params[:id])
+    redirect_to root_path if @user != current_user
   end
 end

@@ -1,0 +1,85 @@
+= devise_error_messages!
+%p
+  = f.label :email
+  %br/
+  = f.text_field :email, :autocomplete=>"off"
+  %br/
+  %small Your email.
+
+- if (current_user && current_user.email_required?) || resource.new_record?
+  %p
+    = f.label :password
+    %br/
+    = f.password_field :password
+    %br/
+    %small Your password.
+  %p
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation
+    %br/
+    %small Password confirmation.
+  - if current_user
+    %p
+      = f.label :current_password, raw("<b>Current password")
+      %br/
+      = f.password_field :current_password
+      %br/
+      %small Enter current password to update your details.
+
+%p
+  = f.label :name
+  %br/
+  = f.text_field :name
+  %br/
+  %small Your name.
+%p
+  = f.label :address
+  %br/
+  = f.text_field :address, :onchange => 'showUpdate();'
+  %br/
+  %small
+    Enter the physical address, intersection or lat/lon
+    %br/
+    where you would meet for trades.
+%p
+  = f.label :phone
+  %br/
+  = f.text_field :phone
+  %br/
+  %small Preferred phone number.
+%p
+  = f.label :skype
+  %br/
+  = f.text_field :skype
+  %br/
+  %small
+    %a{:href => "http://www.skype.com", :target => "_blank"} Skype
+    name.
+%p
+  = f.label :aim
+  %br/
+  = f.text_field :aim
+  %br/
+  %small
+    %a{:href => "http://www.aim.com", :target => "_blank"} AIM
+    Account.
+%p
+  = f.label :yim
+  %br/
+  = f.text_field :yim
+  %br/
+  %small
+    %a{:href => "http://messenger.yahoo.com/", :target => "_blank"} Yahoo Messenger
+    account.
+%p
+  = f.label :jabber
+  %br/
+  = f.text_field :jabber
+  %br/
+  %small
+    %a{:href => "http://register.jabber.org/", :target => "_blank"} Jabber
+    account.
+= f.submit action
+= f.hidden_field :latitude
+= f.hidden_field :longitude
