@@ -11,6 +11,7 @@ var country = null;
 var loc = null;
 var dat = null;
 var markersArray = [];
+var timeout = false;
 
 function addMarker(lat, lon, title) {
   loc = new google.maps.LatLng(lat, lon)
@@ -136,7 +137,6 @@ function initialize() {
     maxWidth: 400,
     content: ''
   });
-  var timeout = false;
   google.maps.event.addListener(map, 'center_changed', function(){
     if (timeout !== false) {
       window.clearTimeout(timeout);
@@ -178,6 +178,7 @@ function showUpdate() {
   latitude = lat_lon.lat();
   longitude = lat_lon.lng();
   showResults();
+  timeout = false;
 }
 function success(event, data, status, xhr) {
   $("#status").html('<h1 style="color: green">Profile Updated</h1>');
