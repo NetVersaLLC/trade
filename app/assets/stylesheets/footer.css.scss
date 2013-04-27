@@ -1,0 +1,27 @@
+#bottom {
+  clear: both;
+  padding: 0 10px;
+  text-align: left;
+  margin-top: 30px;
+  font-size: 15px;
+  a {
+    text-decoration: none;
+  }
+  > ul {
+    float: right;
+    margin: 0;
+    li {
+      float: left;
+      list-style: none;
+      margin-right: 10px;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
+#copyright {
+  margin-top: 5px;
+  font-size: 12px;
+  text-align: left;
+}

@@ -12,8 +12,13 @@
  *= require_tree .
  */
 
+@font-face {
+  font-family: Calibri; 
+  src: url(calibri.ttf);
+}
+
 body {
-  font-family: 'Neuton', Times, "Times New Roman", serif;
+  font-family: 'Calibri', Times, "Times New Roman", serif;
   font-size: 14px;
 }
 img {
@@ -84,16 +89,16 @@ h4 {
   width: 800px;
   height: 500px;
   margin: 0px auto;
+  border: 1px solid black;
   clear: both;
 }
 #logo {
-  background-image: url(/assets/logo.png);
+  background-image: url(/assets/logo-wide.png);
   background-repeat: no-repeat;
   width: 800px;
   margin: 0px auto;
-  font-size: 24px;
-  height: 130px;
-  /* font-family: 'Reenie Beanie', Times, "Times New Roman", serif; */
+  font-size: 20px;
+  height: 100px;
 }
 #logoimg {
   float: left;
@@ -144,25 +149,7 @@ h4 {
   width: 132px;
   height: 39px;
 }
-#bottom {
-  clear: both;
-  float: left;
-  width: 800px;
-  text-align: center;
-  font-size: 15px;
-}
-#copyright {
-  margin-top: 5px;
-  font-size: 10px;
-  text-align: center;
-}
 
-.menu {
-  margin: 0px auto;
-  font-size: 12pt;
-  width: 800px;
-  text-align: right;
-}
 .field_with_errors {
   padding: 2px;
   background-color: red;

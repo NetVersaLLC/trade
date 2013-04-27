@@ -9,29 +9,18 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    .menu
-      - if user_signed_in?
-        - if current_user.name.present?
-          Signed in as: #{current_user.name} | #{link_to 'Sign Out', destroy_user_session_path, :method => :delete}
-        - else
-          Signed in as: #{current_user.email} | #{link_to 'Sign Out', destroy_user_session_path, :method => :delete}
-        |
-        = link_to "Edit account", edit_user_registration_path
-      - else
-        = link_to "Sign in", new_user_session_path
-        |
-        = link_to "Sign up", new_user_registration_path
-
     #logo
       %a{:href => "/under_construction"}
-      -# %a{:href => "/authentications?mode=join"}
-        = image_tag 'join.png', :alt => 'Join', :id => :join
-      %a{:href => "/about"}
-        = image_tag 'about.png', :alt => 'About', :id => :about
-      %a{:href => "/under_construction"}
-      -#%a{:href => "/authentications"}
-        = image_tag 'members.png', :alt => 'Members Login', :id => 'members'
-      #instructions Find local Bitcoin traders in your area.
+      %ul.menu
+        - if user_signed_in?
+          %li= link_to 'Sign Out', destroy_user_session_path, :method => :delete
+          %li= link_to "Edit account", edit_user_registration_path
+        - else
+          %li= link_to "Join", new_user_registration_path
+          %li= link_to "Login", new_user_session_path
+        %li= link_to "Trade Online", new_user_session_path
+        %li
+          %a{:href => "/about"} About
   
     #content
       - unless flash.empty? 
@@ -40,6 +29,15 @@
       = yield
 
       #bottom
+        %ul 
+          %li 
+            %a{:href => ""}= image_tag "icons/facebook.png"
+          %li 
+            %a{:href => ""}= image_tag "icons/twitter.png"
+          %li 
+            %a{:href => ""}= image_tag "icons/blogger.png"
+          %li 
+            %a{:href => ""}= image_tag "icons/gplus.png"
         %p
           %a{:href => "/tos"} Terms of Service
           |
@@ -50,8 +48,9 @@
           %a{:href => "/thanks"} Thanks
           %br/
         #copyright
-          Copyright &copy; 2011
-          %a{:href => "http://assuredwebdevelopment"} Assured Web Development
-          and Jonathan Jeffus
+          %b
+            Copyright &copy; 2011
+            %a{:href => "http://assuredwebdevelopment"} Assured Web Development
+            and Jonathan Jeffus
           %br/
           Donations?:  12SW1w5mvp9ExwMbM9kMwTbN4D9e75KQDr
