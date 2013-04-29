@@ -11,6 +11,12 @@ section {
     height: 4px;
     background: image-url("backgrounds/line-dot.png") repeat-x;
   }
+  &.without_borders {
+    &:after {
+      left: 0px;
+      right: 0px;
+    }
+  }
   > img:first-child {
     margin: 0 auto;
     display: block
@@ -24,12 +30,22 @@ section {
 }
 
 #inpress {
+  padding: 24px 10px;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    right: 10px;
+    height: 4px;
+    background: image-url("backgrounds/line-dot.png") repeat-x;
+  }
   line-height: 45px;
+  height: 45px;
   font-weight: bold;
   font-size: 20px;
   color: #3a5a77;
   margin: 20px 0 0 0;
-  padding: 0 10px;
   > * {
     margin-left: 10px;
   }

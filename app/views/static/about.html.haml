@@ -1,13 +1,7 @@
+%section.without_borders
 %h1 The Problem of Bitcoin - Solved
-%div{:style => "float: right; margin: 10px; padding: 20px; padding-top: 5px; padding-bottom: 5px; border: 1px solid black; background-color: #cfc; width: 240px; font-weight: bold; font-size: 12pt;"}
-  %p
-    \&quot;
-    %big> R
-    elying on the honesty of random strangers from the internet is not an effective or sustainable way to found an economy...&quot;
 %p
-  %big>
-    %b S
-  o, you've heard about the newest craze for buying and selling online:
+  So, you've heard about the newest craze for buying and selling online:
   = succeed "." do
     %a{:href => "http://www.bitcoin.org"} bitcoin
   For the first time in history we have a cash-like currency for online transactions. It's instant, anonymous and irreversible. How do you get some so you can go buy
@@ -17,8 +11,13 @@
   = succeed "." do
     %a{:href => "http://coinpal.ndrix.com/"} CoinPal
   But this is only an option if you don't mind limiting yourself to 20 BTC total purchase per-week. And it requires a verified PayPal account, something many people don't have or know how to get. What then? How can you buy some Bitcoin?
+
 %p Well, besides these options your only choice is to send some money to someone using other methods. Here's a table summarizing your choices.
-%table.info{:cellpadding => "5", :cellspacing => "5"}
+
+%p{:style => "padding: 15px; border-radius: 10px; background-color: #e1e1db; font-weight: bold; font-size: 16px; font-style: italic;"}
+  &quot; Relying on the honesty of random strangers from the internet is not an effective or sustainable way to found an economy...&quot;
+
+%table.info{:cellpadding => "1", :cellspacing => "1"}
   %thead
     %tr
       %th Method
@@ -26,9 +25,9 @@
       %th Time to Send
       %th Time to Receive
   %tbody
-    %tr{:style => "background-color: #cfc;"}
+    %tr{:style => "background-color: #e9f5e7;"}
       %td
-        %img{:alt => "Wire Transfer", :src => "/assets/wire_transfer.png", :title => "Wire Transfer"}/
+        = image_tag "icons/wire.jpg", alt: "Wire Transfer", title: "Wire Transfer"
       %td
         %h4 $15 - $50
         USD
@@ -36,7 +35,7 @@
       %td 1 hour+
       %td
         %em ?
-    %tr{:style => "background-color: #cfc;"}
+    %tr{:style => "background-color: #e9f5e7;"}
       %td
         %img{:alt => "Western Union", :src => "/assets/western_union.png"}/
       %td
@@ -46,7 +45,7 @@
       %td 1 hour+
       %td
         %em ?
-    %tr{:style => "background-color: #cfc;"}
+    %tr{:style => "background-color: #e9f5e7;"}
       %td
         %img{:alt => "Moneygram", :src => "/assets/moneygram.png"}/
       %td
@@ -56,7 +55,7 @@
       %td 1 hour+
       %td
         %em ?
-    %tr{:style => "background-color: #ffc;"}
+    %tr{:style => "background-color: #f8f1c0;"}
       %td
         %img{:alt => "ACH Transaction", :src => "/assets/cheque.png", :title => "ACH Transaction"}/
       %td
@@ -67,7 +66,7 @@
         %h4 *
       %td
         %em ?
-    %tr{:style => "background-color: #ffc;"}
+    %tr{:style => "background-color: #f8f1c0;"}
       %td
         %img{:alt => "FedEx Overnight", :src => "/assets/fedex_express.png"}/
       %td
@@ -79,7 +78,7 @@
         %h4 **
       %td
         %em ?
-    %tr{:style => "background-color: #ffc;"}
+    %tr{:style => "background-color: #f8f1c0;"}
       %td
         %img{:alt => "UPS Overnight", :src => "/assets/ups.png"}/
       %td
@@ -91,7 +90,7 @@
         %h4 **
       %td
         %em ?
-    %tr{:style => "background-color: #fcc;"}
+    %tr{:style => "background-color: #ffdfdf;"}
       %td
         %img{:alt => "Postal Service", :src => "/assets/usps.png"}/
       %td
@@ -102,51 +101,54 @@
         %em ????
       %td
         %em ?
-  %tfoot
-    %tr
-      %th{:colspan => "4"}
-        %p
-          %small/
-        %h4 *
-        1 day is best case, this method can take up to 7 to 10 days, depending on the bank.
-        %br/
-        %small/
-        %h4 **
-        Cheaper shipping methods are available but overnight service costs $15 USD or more.
-%p No matter what method you choose to send money you will always have the following problems.
-%ol
+%br         
+%h4 *
+%b 1 day is best case, this method can take up to 7 to 10 days, depending on the bank.
+
+%br/
+%h4 **
+%b Cheaper shipping methods are available but overnight service costs $15 USD or more.
+
+%h3 No matter what method you choose to send money you will always have the following problems.
+%ol.probs-list
   %li
-    You don't know if the person you're sending money to is
-    = succeed "." do
-      %b trustworthy
+    %span
+      You don't know if the person you're sending money to is
+      = succeed "." do
+        %b trustworthy
   %li
-    You have no way of
-    %b verifying
-    that your exchange partner owns bitcoins to trade with you.
+    %span
+      You have no way of
+      %b verifying
+      that your exchange partner owns bitcoins to trade with you.
   %li
-    If you send Western Union, Moneygram, FedEx, UPS or postal mail you have no way to prove that the money was
-    %b received
-    by your exchange partner.
+    %span
+      If you send Western Union, Moneygram, FedEx, UPS or postal mail you have no way to prove that the money was
+      %b received
+      by your exchange partner.
   %li
-    There is no way to buy bitcoins
-    %b today
-    that costs less than $15 USD minimum.
-%table{:style => "float: right; margin: 10px; padding: 10px; border: 2px solid black;"}
+    %span
+      There is no way to buy bitcoins
+      %b today
+      that costs less than $15 USD minimum.
+
+%table.local-exchange{:style => "float: right; margin: 10px; padding: 10px; border: 2px solid black; background: #f0f0f0;"}
   %tbody
     %tr
       %td{:colspan => "2"}
         %img{:align => "right", :alt => "World Money", :src => "/assets/boy.png", :style => "margin: 10px"}/
     %tr
       %th{:colspan => "2"} Local Exchange
-    %tr{:style => "background-color: #cfc"}
+    %tr{:style => "background-color: #22296e;"}
       %td Cost:
       %td Negotiable
-    %tr{:style => "background-color: #cfc"}
+    %tr{:style => "background-color: #22296e"}
       %td Time to Send:
       %td 1 hour+
-    %tr{:style => "background-color: #cfc"}
+    %tr{:style => "background-color: #22296e"}
       %td Time to Receive:
       %td 1 hour+
+
 %p The first point is the most damning for the widespread acceptance of Bitcoin. Relying on the honesty of random strangers from the internet is not an effective or sustainable way to found an economy. Without reputation and public liability under the law it's impossible for people to place trust in a currency.
 %p
   So what's the solution?

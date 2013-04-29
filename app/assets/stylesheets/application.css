@@ -19,7 +19,7 @@
 
 body {
   font-family: 'Calibri', Times, "Times New Roman", serif;
-  font-size: 14px;
+  font-size: 15px;
 }
 img {
   border: 0px;
@@ -49,7 +49,7 @@ h4 {
   display: inline;
   font-size: 28px;
   font-weight: bold;
-  color: #0a0;
+  color: #cd3f3f;
 }
 
 #notice {
@@ -235,10 +235,6 @@ h4 {
 .gravatar {
   float: left;
   margin: 0px;
-}
-
-.info td {
-  font-weight: bold;
 }
 
 .boxContent {
