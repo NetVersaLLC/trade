@@ -12,7 +12,7 @@ set :rvm_type, :user
 
 set :application, 'trade'
 set :scm        , :git
-set :repository , 'git@github.com:jjeffus/trade.git'
+set :repository , 'git@github.com:NetVersaLLC/trade.git'
 set :user       , 'trade'
 set :use_sudo   , false
 set :ssh_options, {:forward_agent => true}
@@ -102,6 +102,7 @@ task :after_update_code do
     run "ln -s #{shared_path}/#{share} #{release_path}/#{share}"
   end
   run "ln -s #{shared_path}/application.yml #{release_path}/config/application.yml"
+  run "ln -s #{shared_path}/database.yml #{release_path}/config/database.yml"
 end
 
 after 'deploy'           , 'after_update_code'
