@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: git@github.com:Fodoj/blogit.git
-  revision: 4e95a3938b779f008c606c5fdc5793f14b2f5bd8
+  revision: 5251a8993799b05eae6f8f772f8feb792e92055d
   branch: rails4
   specs:
     blogit (0.7.0)
@@ -55,7 +55,7 @@ GEM
     albino (1.3.3)
       posix-spawn (>= 0.3.6)
     arel (4.0.0.beta2)
-    atomic (1.1.8)
+    atomic (1.1.9)
     bcrypt-ruby (3.0.1)
     better_errors (0.7.2)
       coderay (>= 1.0.0)
