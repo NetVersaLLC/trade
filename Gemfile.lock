@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: git@github.com:Fodoj/blogit.git
-  revision: 5251a8993799b05eae6f8f772f8feb792e92055d
+  revision: bc93c25a2aa9ad1639b8b3e38196a4fb5e5072b6
   branch: rails4
   specs:
     blogit (0.7.0)

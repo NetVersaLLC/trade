@@ -1,3 +1,7 @@
+require 'rails/observers/active_model/observing'
+require 'rails/observers/activerecord/observer'
+require 'rails/observers/action_controller/caching'
+
 # These configuration options can be used to customise the behaviour of Blogit
 Blogit.configure do |config|
   config.authentication_method = :authenticate_user!
