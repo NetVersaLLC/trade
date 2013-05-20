@@ -10,54 +10,56 @@ var city = null;
 var country = null;
 var loc = null;
 var dat = null;
-var markersArray = [];
+/**
+ *
+ * @type {Object.<string, google.maps.Marker>}
+ */
+var markersHash = {};
 var timeout = false;
 
-function addMarker(lat, lon, title) {
-  loc = new google.maps.LatLng(lat, lon)
+function addMarker(id, lat, lon, title) {
+  if (markersHash[id] === undefined) { //there's no marker for such user
+    loc = new google.maps.LatLng(lat, lon);
   var marker = new google.maps.Marker({
     position: loc,
     map: map,
     animation: google.maps.Animation.DROP,
     title: title
   });
-  markersArray.push(marker);
-  return marker;
+  markersHash[id] = marker;
+    return marker;
+  } else {
+    var marker = markersHash[id];
+    if (marker.getPosition().lat() == lat && marker.getPosition().lng() == lon) {
+      return marker; //same position, just returning cached marker
+    } else {
+      marker.setPosition(new google.maps.LatLng(lat, lon)); //position changed, updating it
+      return marker;
+    }
+  }
 }
 
 function clearOverlays() {
-  if (markersArray) {
-    for (i in markersArray) {
-      markersArray[i].setMap(null);
-    }
-  }
+  jQuery.each(markersHash, function(k, v){
+    v.setMap(null)
+  });
 }
 
 // Shows any overlays currently in the array
 function showOverlays() {
-  if (markersArray) {
-    for (i in markersArray) {
-      markersArray[i].setMap(map);
-    }
-  }
+  jQuery.each(markersHash, function(k, v){
+    v.setMap(map)
+  });
 }
 
 // Deletes all markers in the array by removing references to them
 function deleteOverlays() {
-  if (markersArray) {
-    for (i in markersArray) {
-      markersArray[i].setMap(null);
-    }
-    markersArray.length = 0;
-  }
+  clearOverlays();
+  markersHash = {};
 }
 
 function isSet(v) {
-  if (v != null && $.trim(v) != '') {
-    return true;
-  } else {
-    return false;
-  }
+  return v != null && $.trim(v) != '';
 }
 
 function searchIt() {
@@ -75,7 +77,7 @@ function showResults() {
     dat = data;
     $.each(data, function (i,user) {
       $(function () {
-        var marker = addMarker(user['latitude'], user['longitude'], user['name']);
+        var marker = addMarker(user['id'], user['latitude'], user['longitude'], user['name']);
         var info ='<div class="stack"><img src="http://www.gravatar.com/avatar/'+user['gravatar']+'" alt="Gravatar" class="gravatar" />';
         info += '<h3 class="boxContent">'+user['name']+'</h3></div>';
         if (isSet(user['address'])) {
