@@ -92,16 +92,11 @@ h4 {
   border: 1px solid black;
   clear: both;
 }
-#logo {
-  background-image: url(/assets/logo-wide.png);
-  background-repeat: no-repeat;
+#header {
   width: 800px;
   margin: 0px auto;
   font-size: 20px;
   height: 100px;
-}
-#logoimg {
-  float: left;
 }
 #instructions {
   position: relative;
