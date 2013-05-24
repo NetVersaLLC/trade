@@ -4,15 +4,10 @@
   = image_tag("extra/news2.png")
   = image_tag("extra/news3.png")
 #bottom
-  %ul 
-    %li 
-      %a{:href => ""}= image_tag "icons/facebook.png"
-    %li 
-      %a{:href => ""}= image_tag "icons/twitter.png"
-    %li 
-      %a{:href => ""}= image_tag "icons/blogger.png"
-    %li 
-      %a{:href => ""}= image_tag "icons/gplus.png"
+  %ul
+    - ['facebook', 'twitter', 'blogger', 'gplus'].each do |name|
+      %li
+        %a{:href => Settings.send(name).url, :target => '_blank'}= image_tag "icons/#{name}.png"
   %p
     %a{:href => "/tos"} Terms of Service
     |
