@@ -26,7 +26,8 @@
     #content
       - unless flash.empty? 
         - flash.each do |name, msg|
-          = raw(msg)
+          %p{:id => name}
+            = raw(msg)
       = yield
 
       = render "shared/footer"
