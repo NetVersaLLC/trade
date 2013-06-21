@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   validates :password, :presence => true, :if => :password_required?
   validates_confirmation_of :password, :if => :password_required?
+  validates_length_of :password, :within => 6..40, :if => :password_required?
 
   #validate :current_password_should_match, if: :need_password_confirmation?
 

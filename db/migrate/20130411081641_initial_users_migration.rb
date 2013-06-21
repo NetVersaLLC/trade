@@ -1,6 +1,6 @@
 class InitialUsersMigration < ActiveRecord::Migration
   def change
-    create_table "authentications", force: true do |t|
+    create_table "authentications" do |t|
       t.integer "user_id"
       t.string  "provider"
       t.string  "uid"
@@ -9,7 +9,7 @@ class InitialUsersMigration < ActiveRecord::Migration
     add_index "authentications", ["provider"], name: "index_authentications_on_provider"
     add_index "authentications", ["uid"], name: "index_authentications_on_uid"
 
-    create_table "users", force: true do |t|
+    create_table "users" do |t|
       t.string   "email"
       t.string   "encrypted_password",   limit: 128, default: "",    null: false
       t.string   "password_salt",                    default: "",    null: false

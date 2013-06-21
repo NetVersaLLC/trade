@@ -2,7 +2,7 @@
 class CreateBlogComments < ActiveRecord::Migration
   def change
     unless table_exists? 'blog_comments'
-      create_table :blog_comments, force: true do |t|
+      create_table :blog_comments do |t|
         t.string :name, null: false
         t.string :email, null: false
         t.string :website
