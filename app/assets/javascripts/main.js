@@ -170,6 +170,7 @@ function codeAddress(address, callback) {
       if (callback != null) {
         callback();
       }
+      return true;
     } else {
       $('#status').html("<h1>Error</h1><p>Geocode was not successful for the following reason: " + status + '</p>');
     }
@@ -190,18 +191,13 @@ function failure(event, xhr, status, error) {
   html += '<p>' + xhr.responseText + '</p>';
   $("#status").html(html);
 }
-function gotLocation() {
+function updateLatLong() {
   // Success, now submit the form
   $('#user_latitude').val(latitude);
   $('#user_longitude').val(longitude);
   if (marker != null) {
-    marker.setMap(null);
-    marker = addMarker(latitude, longitude, "My Location");
-  }
-  try {
-    $("form.edit_user").submit();
-  } catch (e) {
-
+    clearOverlays();
+    addMarker(latitude, longitude, "My Location");
   }
 }
 function trySubmit() {
@@ -210,12 +206,17 @@ function trySubmit() {
     html = '<h1 style="color: red">Error</h1>';
     html += '<p>Address field cannot be empty.</p>';
     $("#status").html(html);
+    return false;
   } else {
     // Geocode the address
-    codeAddress(newAddress, gotLocation);
+    codeAddress(newAddress, updateLatLong);
     address = newAddress;
-    // gotLocation();
+    return true;
   }
+}
+
+function setLocationFromForm() {
+    return codeAddress($("#user_address").val(), updateLatLong);
 }
 
 $(document).ready(function () {

@@ -6,7 +6,8 @@
   %br/
   %small Your email.
 
-- if (current_user && current_user.email_required?) || resource.new_record?
+-#- if (current_user && current_user.email_required?) || resource.new_record?
+- if resource.new_record?
   %p
     = f.label :password
     %br/
@@ -19,14 +20,13 @@
     = f.password_field :password_confirmation
     %br/
     %small Password confirmation.
-  - if current_user
-    %p
-      = f.label :current_password, raw("<b>Current password")
-      %br/
-      = f.password_field :current_password
-      %br/
-      %small Enter current password to update your details.
-
+  -#- if current_user
+  -#  %p
+  -#    = f.label :current_password, raw("<b>Current password")
+  -#    %br/
+  -#    = f.password_field :current_password
+  -#    %br/
+  -#    %small Enter current password to update your details.
 %p
   = f.label :name
   %br/
@@ -36,7 +36,8 @@
 %p
   = f.label :address
   %br/
-  = f.text_field :address, :onchange => 'showUpdate();'
+  -#= f.text_field :address, :onchange => 'setLocationFromForm();'
+  = f.text_field :address
   %br/
   %small
     Enter the physical address, intersection or lat/lon
