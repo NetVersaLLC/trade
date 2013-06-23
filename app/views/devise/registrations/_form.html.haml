@@ -36,8 +36,7 @@
 %p
   = f.label :address
   %br/
-  -#= f.text_field :address, :onchange => 'setLocationFromForm();'
-  = f.text_field :address
+  = f.text_field :address, :onchange => 'setLocationFromForm();'
   %br/
   %small
     Enter the physical address, intersection or lat/lon
