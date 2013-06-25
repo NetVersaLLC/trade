@@ -47,9 +47,6 @@ SQL
     end
   end
 
-  def edit
-  end
-
   def create
     @user = User.new(params[:user])
 
@@ -95,7 +92,7 @@ SQL
   private 
   def permitted_params
     if User.find(params[:id]) == current_user
-      params.require(:user).permit(:name, :email, :current_password, :address, :phone, :skype, :aim, :yim, :jabber)
+      params.require(:user).permit(:name, :email, :current_password, :address, :phone, :skype, :aim, :yim, :jabber, :latitude, :longitude)
     end
   end
 

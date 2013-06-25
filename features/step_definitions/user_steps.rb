@@ -124,8 +124,8 @@ end
 When /^I edit my account details$/ do
   click_link "Edit account"
   fill_in "user_name", :with => "newname"
-  fill_in "user_current_password", :with => @visitor[:password]
-  click_button "update"
+  #fill_in "user_current_password", :with => @visitor[:password]
+  click_button "Update"
 end
 
 When /^I look at the list of users$/ do

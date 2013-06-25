@@ -1,4 +1,10 @@
 %h2 Sign up
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = render "form", action: "Sign up", f: f
+%br{:class => "clear"}
+.item
+  .left
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = render "form", action: "Sign up", f: f
+  .right
+    = render "map"
+%br{:class => "clear"}
 = render "devise/shared/links"
