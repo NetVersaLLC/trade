@@ -206,12 +206,13 @@ function trySubmit() {
     html = '<h1 style="color: red">Error</h1>';
     html += '<p>Address field cannot be empty.</p>';
     $("#status").html(html);
-    return false;
   } else {
     // Geocode the address
-    codeAddress(newAddress, updateLatLong);
+    codeAddress(newAddress, function() {
+        updateLatLong();
+        $("form").submit();
+    });
     address = newAddress;
-    return true;
   }
 }
 

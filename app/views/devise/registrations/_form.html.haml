@@ -80,6 +80,6 @@
   %small
     %a{:href => "http://register.jabber.org/", :target => "_blank"} Jabber
     account.
-= f.submit action
+= button_tag action, :type => "button", :onclick => "javascript:trySubmit();"
 = f.hidden_field :latitude
 = f.hidden_field :longitude
