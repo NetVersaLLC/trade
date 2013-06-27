@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0.beta1'
 gem 'mysql2'
 group :assets do
-  gem 'sass-rails',   '~> 4.0.0.beta1'
   gem 'coffee-rails', '~> 4.0.0.beta1'
   gem 'therubyracer', platforms: :ruby
   gem 'uglifier', '>= 1.0.3'
@@ -43,6 +42,9 @@ gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'ransack',             github: 'ernie/ransack',         branch: 'rails-4'
 gem 'activeadmin',         github: 'gregbell/active_admin', branch: 'rails4'
 gem 'formtastic',          github: 'justinfrench/formtastic'
+gem 'sass-rails',   '~> 4.0.0.beta1'
+
+
 
 
 
