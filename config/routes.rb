@@ -1,14 +1,19 @@
 Trade::Application.routes.draw do
-  
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   mount Blogit::Engine => "/blog"
 
   get '/auth/:provider/callback' => 'authentications#create'
+  #devise_for :users, :controllers => {
+  #                                    :registrations => 'registrations',
+  #                                    :omniauth_callbacks => 'omniauth_callbacks'
+  #                                   }
   devise_for :users, :controllers => {
-                                      :registrations => 'registrations',
+                                      :registrations => 'users',
                                       :omniauth_callbacks => 'omniauth_callbacks'
                                      }
 
-  resources :users
   resources :authentications
 
   get '/about' => 'static#about'
@@ -17,12 +22,14 @@ Trade::Application.routes.draw do
   get '/privacy_policy' => 'static#privacy_policy'
   get '/thanks' => 'static#thanks'
   get '/under_construction' => 'static#under_construction'
-  root :to => "users#index"
 
-  authenticated :user do
-    root :to => 'users#edit'
+  devise_scope :user do
+    resources :users
+    root :to => "users#index"
+    authenticated :user do
+      root :to => 'users#edit'
+    end
   end
-  root :to => "users#index"
 end
 
 Blogit::Engine.routes.draw do
