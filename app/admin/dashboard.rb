@@ -6,7 +6,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     panel "Recent Users" do
       ul do
-        User.order(:created_at).map do |user|
+        User.order("id DESC").limit(10).map do |user|
           li link_to(user.name, admin_user_path(user))
         end
       end
