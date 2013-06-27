@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :if => :password_required?
   validates_length_of :password, :within => 6..40, :if => :password_required?
 
-  #validate :current_password_should_match, if: :need_password_confirmation?
+  #validate :current_password_should_match, if: :need_password_confirmation? # checked by devise
 
   def self.from_omniauth(auth_data)
     auth = Authentication.where(auth_data.slice(:provider, :uid)).first_or_create! do |authentication|
@@ -36,10 +36,22 @@ class User < ActiveRecord::Base
     (authentications.empty? || !password.blank?) && (!persisted? || !self.password.nil? || !password_confirmation.nil?)
   end
 
+  def current_password_required?
+    authentications.empty? || !password.blank?
+  end
+
+  def update_with_password(params, *options)
+    if !current_password_required?
+        update_attributes(params, *options)
+    else
+      super
+    end
+  end
+
   private
-  
+
   def need_password_confirmation?
-    password_required? && !new_record?  
+    password_required? && !new_record?
   end
 
   def current_password_should_match

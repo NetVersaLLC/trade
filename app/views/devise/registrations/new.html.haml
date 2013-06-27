@@ -1,5 +1,12 @@
-%h2 Sign up
+%h1 Awesome!
+%p
+  Thank you for joining! We believe that buying and selling Bitcoins can be an easy and safe process.
+  %br/
+  In order to proceed, please sign up or login using one of the services below.
 %br{:class => "clear"}
+= link_to (image_tag "/assets/facebook.png", :alt => "Facebook", :title => "Login with Facebook"), omniauth_authorize_path(resource_name, "facebook")
+= link_to (image_tag "/assets/twitter.png", :alt => "Facebook", :title => "Login with Twitter"), omniauth_authorize_path(resource_name, "twitter")
+%h2 Sign up form
 .item
   .left
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|

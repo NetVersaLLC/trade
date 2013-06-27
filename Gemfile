@@ -35,9 +35,19 @@ gem "quiet_assets", ">= 1.0.2", :group => :development
 gem 'settingslogic'
 gem 'rails-observers'
 
-gem 'blogit', :git => "git@github.com:Fodoj/blogit.git", :branch => "rails4"
+gem 'blogit', github: 'Fodoj/blogit', branch: 'rails4'
+
+# ActiveAdmin
+gem 'responders',          github: 'plataformatec/responders'
+gem 'inherited_resources', github: 'josevalim/inherited_resources'
+gem 'ransack',             github: 'ernie/ransack',         branch: 'rails-4'
+gem 'activeadmin',         github: 'gregbell/active_admin', branch: 'rails4'
+gem 'formtastic',          github: 'justinfrench/formtastic'
+
+
 
 #AUTH
-gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => "rails4"
+gem 'devise', ">=3.0.0.rc"
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+
