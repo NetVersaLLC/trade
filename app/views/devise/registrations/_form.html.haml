@@ -38,10 +38,10 @@
 %p
   = f.label :address
   %br/
-  = f.text_field :address, :onchange => 'setLocationFromForm();'
+  = f.text_field :address
   %br/
   %small
-    Enter the physical address, intersection or lat/lon
+    Enter the physical address or intersection
     %br/
     where you would meet for trades.
 %p
@@ -82,6 +82,6 @@
   %small
     %a{:href => "http://register.jabber.org/", :target => "_blank"} Jabber
     account.
-= button_tag action, :type => "button", :onclick => "javascript:trySubmit();"
+= button_tag action, :type => "button"
 = f.hidden_field :latitude
 = f.hidden_field :longitude

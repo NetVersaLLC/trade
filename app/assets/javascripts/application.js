@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require underscore-min
+//= require json2
+//= require backbone-min
+//= require models
+//= require_tree ./views
