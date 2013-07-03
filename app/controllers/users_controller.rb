@@ -20,6 +20,11 @@ LIMIT 40
 SQL
     end
 
+    # map will be initialized with current user's location
+    if current_user && current_user.latitude
+      @user_json = current_user.to_json(only: [:latitude, :longitude])
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.js  { render :json => @users }

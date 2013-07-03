@@ -1,15 +1,17 @@
 / ABQIAAAARBQfmn9RdvBiquR4PDW70RTBEj2q42X4eGCXtNwsuxttAIUH7hRRw1JqYFzkaCOLoyhNAylbiI4Nog
-:javascript
-  $(function() {
-    whereami();
-    initialize();
-    showResults();
-  });
+- content_for :head do
+  :javascript
+    $(function() {
+      #{"Tradebitcoin.user = " + @user_json + ";" if @user_json}
+      Tradebitcoin.view = new Tradebitcoin.views.Search();
+    });
+
 #map_canvas
+#status
 #controls
   %form#searchIt{:onsubmit => "return false;"}
     %input#search{:name => "search", :onfocus => "if (this.value == '  Address...') { this.style.color = '#000'; this.value=''; }", :style => "color: #999;", :type => "text", :value => "  Address..."}/
-    %img#go{:alt => "Go", :src => "/assets/go.png", :title => "Search for traders near this address or intersection."}/
+    %img#go.submit{:alt => "Go", :src => "/assets/go.png", :title => "Search for traders near this address or intersection."}/
 
 %section.landing-text
   %h1 What are Bitcoins?
