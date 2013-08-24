@@ -108,6 +108,6 @@ end
 after 'deploy'           , 'after_update_code'
 after 'after_update_code', 'deploy:migrations'
 after 'deploy:migrations', 'deploy:assets'
-after 'deploy:restart',   'unicorn:restart'  # app preloade
+#after 'deploy:restart',   'unicorn:restart'  # app preloade
 
 require './config/boot'
