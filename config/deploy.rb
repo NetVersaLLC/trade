@@ -108,7 +108,6 @@ end
 after 'deploy'           , 'after_update_code'
 after 'after_update_code', 'deploy:migrations'
 after 'deploy:migrations', 'deploy:assets'
-after 'deploy:assets',     'nginx:reload'
-after 'nginx:reload'     , 'thin:restart'
+after 'deploy:restart',   'unicorn:restart'  # app preloade
 
 require './config/boot'

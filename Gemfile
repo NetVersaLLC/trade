@@ -29,7 +29,8 @@ end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem "unicorn", ">= 4.3.1"
+gem "unicorn"
+gem 'capistrano-unicorn', :require => false
 gem "haml-rails", ">= 0.4"
 gem "html2haml", ">= 1.0.1", :group => :development
 gem "quiet_assets", ">= 1.0.2", :group => :development
