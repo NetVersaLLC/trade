@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
-gem 'rails', '4.0.0.beta1'
+gem 'rails', '4.0.0'
 gem 'mysql2'
-group :assets do
-  gem 'coffee-rails', '~> 4.0.0.beta1'
-  gem 'therubyracer', platforms: :ruby
-  gem 'uglifier', '>= 1.0.3'
-end
+
+# assets
+gem 'coffee-rails'
+gem 'therubyracer', platforms: :ruby
+gem 'uglifier', '>= 1.0.3'
+
 group :test do
   gem 'factory_girl_rails'
   gem "cucumber-rails"
@@ -13,7 +14,8 @@ group :test do
   gem "database_cleaner", ">= 1.0.0.RC1"
   gem "email_spec", ">= 1.4.0"
   gem "launchy", ">= 2.2.0"
-  gem "capybara", ">= 2.0.3"
+  gem "selenium-webdriver"
+  gem "capybara"
 end
 
 group :development do
@@ -42,14 +44,11 @@ gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'ransack',             github: 'ernie/ransack',         branch: 'rails-4'
 gem 'activeadmin',         github: 'gregbell/active_admin', branch: 'rails4'
 gem 'formtastic',          github: 'justinfrench/formtastic'
-gem 'sass-rails',   '~> 4.0.0.beta1'
-
-
-
+gem 'sass-rails'
 
 
 #AUTH
-gem 'devise', ">=3.0.0.rc"
+gem 'devise', '3.0.2'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 

@@ -25,9 +25,11 @@ Trade::Application.routes.draw do
 
   devise_scope :user do
     resources :users
-    root :to => "users#index"
+    unauthenticated do
+      root :to => "users#index"
+    end
     authenticated :user do
-      root :to => 'users#edit'
+      root :to => 'users#edit', as: :authenticated_root
     end
   end
 end
