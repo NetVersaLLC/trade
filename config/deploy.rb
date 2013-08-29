@@ -1,6 +1,8 @@
 require 'capistrano-db-tasks'
 require 'bundler/capistrano'
 require 'rvm/capistrano'
+require 'capistrano-unicorn'
+
 set :rvm_type, :user
 set :db_local_clean, true
 
