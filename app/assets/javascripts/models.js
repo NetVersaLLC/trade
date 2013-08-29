@@ -30,8 +30,8 @@ var Tradebitcoin = Tradebitcoin || { models: {}, views: {}};
                     animation: google.maps.Animation.DROP,
                     title: title
                 });
-                var info = '<div class="stack"><img src="http://www.gravatar.com/avatar/' + this.get("gravatar") + '" alt="Gravatar" class="gravatar" />';
-                info += '<h3 class="boxContent">' + this.get("name") + '</h3></div>';
+                var info = '<div class="stack"><a href="/users/' + this.get("id") + '"><img src="http://www.gravatar.com/avatar/' + this.get("gravatar") + '" alt="Gravatar" class="gravatar" /></a>';
+                info += '<a class="profileName" href="/users/' + this.get("id") + '"><h3 class="boxContent">' + this.get("name") + '</h3></a></div>';
                 if (this.notEmpty("address")) {
                     info += '<div class="boxContent stack">Address: ' + this.get("address") + '</div>';
                 }

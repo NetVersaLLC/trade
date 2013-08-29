@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def gravatar
+    Digest::MD5.hexdigest(email.downcase.strip)
+  end
+
   private
 
   def need_password_confirmation?
