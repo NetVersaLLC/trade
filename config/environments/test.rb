@@ -30,7 +30,7 @@ Trade::Application.configure do
   config.active_support.deprecation = :stderr
 
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'example.com' }
+  config.action_mailer.default_url_options = { :host => 'tradebitcoin.com' }
 
   config.cache_classes = true
   config.eager_load = false # you may want to turn this to true if using spork
