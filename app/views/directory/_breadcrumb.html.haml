@@ -1,0 +1,10 @@
+- if @breadcrumb
+  .directory-breadcrumb
+    = link_to("World", directory_path)
+    &raquo;
+    - @breadcrumb.length.times do |i|
+      - if i < @breadcrumb.length - 1
+        = link_to(@breadcrumb[i].name, location_path(@breadcrumb[i]))
+        &raquo;
+      - else
+        = @breadcrumb[i].name

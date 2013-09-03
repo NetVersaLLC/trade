@@ -1,0 +1,43 @@
+.directory-breadcrumb {
+  font-size: 1.2em;
+}
+
+.directory-title {
+  font-size: 1.8em;
+  font-weight: bold;
+  clear: both;
+  padding: 10px 0px;
+}
+
+.directory-content {
+  padding-right: 5px;
+}
+
+.directory-location {
+  float: left;
+  font-size: 1.2em;
+  width: 170px;
+  padding: 5px 5px 5px 0px;
+}
+
+.directory-content {
+  table  {
+    width: 100%;
+
+    th {
+      background-color: lightgray;
+    }
+
+    td {
+      padding: 0px 3px;
+    }
+
+    tr:nth-child(even) {background: #FFF}
+    tr:nth-child(odd) {background: #f7f5f5}
+  }
+
+  .pagination {
+    text-align: center;
+  }
+}
+

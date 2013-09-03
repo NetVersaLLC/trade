@@ -16,6 +16,8 @@ Trade::Application.routes.draw do
 
   resources :authentications
 
+  get '/browse/:id', to: 'directory#location',  :as => 'location'
+  get '/browse' => 'directory#location', :defaults => { :id => 0 }, :as => "directory"
   get '/about' => 'static#about'
   get '/tos' => 'static#tos'
   get '/transactions' => 'static#transactions'
@@ -32,6 +34,7 @@ Trade::Application.routes.draw do
       root :to => 'users#edit', as: :authenticated_root
     end
   end
+
 end
 
 Blogit::Engine.routes.draw do

@@ -10,7 +10,6 @@ class UsersController < Devise::RegistrationsController
       @users = User.find_by_sql([<<SQL, {:la => @la, :lo => @lo}])
 SELECT
   id, name, address, phone, aim, yim,  jabber, skype, latitude, longitude,
-  md5(trim(lower(email))) as gravatar,
   ((2 * 3960 * ATAN2(SQRT(POWER(SIN((RADIANS(:la - latitude))/2), 2) + COS(RADIANS(latitude)) * COS(RADIANS(:la)) *
   POWER(SIN((RADIANS(:lo - longitude))/2), 2)),SQRT(1-(POWER(SIN((RADIANS(:la - latitude))/2), 2) + COS(RADIANS(latitude)) * COS(RADIANS(:la)) * POWER(SIN((RADIANS(:lo - longitude))/2), 2)))))) AS distance
 FROM users
@@ -29,6 +28,27 @@ SQL
       format.html # index.html.erb
       format.js  { render :json => @users }
     end
+  end
+
+  # GET /users/:id
+  def show
+    @user = User.find(params[:id])
+    @location = @user.locations.last
+  end
+
+  # The path used after sign up.
+  def after_sign_up_path_for(resource)
+    user_path(resource)
+  end
+
+  # The url to be used after updating a resource.
+  def after_update_path_for(resource)
+    user_path(resource)
+  end
+
+  def update
+    super
+    current_user.update_locations
   end
 
 end

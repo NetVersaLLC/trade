@@ -1,0 +1,52 @@
+- content_for :head do
+  :javascript
+    $(function() {
+      var user = new Tradebitcoin.models.User({
+        name: "#{@user.name}",
+        latitude: "#{@user.latitude}",
+        longitude: "#{@user.longitude}",
+        address: "#{@user.address}"
+      });
+      Tradebitcoin.view = new Tradebitcoin.views.Profile({user: user});
+    });
+- if @location
+  = breadcrumb_for_location(@location)
+.item.profile
+  .left
+    %h2= @user.name
+    %img.gravatar{src: "http://www.gravatar.com/avatar/" + @user.gravatar,  alt: "Gravatar"}
+    %br.clear
+    %br.clear
+
+    - unless @user.address.empty?
+      .label
+        Address:
+      .value
+        = @user.address
+    - unless @user.phone.empty?
+      .label
+        Phone:
+      .value
+        %a{href: "callto:" + @user.phone}
+          = @user.phone
+
+    - unless (@user.aim + @user.skype + @user.yim + @user.jabber).empty?
+      .label Contact online:
+    - unless @user.aim.empty?
+      %a{href:"aim:goim?screenname=" + @user.aim + "&message=Bitcoin+trade."}
+        %img.icon{src:"/assets/aol_64.png", alt:"AOL Instant Messenger", title:"AIM User: " + @user.aim}
+    - unless @user.skype.empty?
+      %a{href:"skype:" + @user.skype}
+        %img.icon{src:"/assets/skype_icon_64x64.png", alt:"Skype", title:"Skype User: " + @user.skype}
+    - unless @user.yim.empty?
+      %a{href:"ymsgr:sendIM?" + @user.yim}
+        %img.icon{src:"/assets/yahoo_64.png", alt:"Yahoo Address", title:"YIM: " + @user.yim}
+    - unless @user.jabber.empty?
+      %a{href:"xmpp:" + @user.jabber + "?message"}
+        %img.icon{src:"/assets/jabber_icon_64x64.png", alt:"Jabber", title:"Jabber: " + @user.jabber}
+    %br.clear
+
+  .right
+    #map_canvas
+
+%br.clear

@@ -1,0 +1,34 @@
+- if @location.id
+  = breadcrumb_for_location(@location)
+- if @locations.length > 0
+  .directory-title= (@location.name + " locations").strip.titleize
+  .directory-content
+    - @locations.each do |location|
+      .directory-location.f32
+        - if location.location_type == 'country'
+          %span{class: "flag " + location.short_name.downcase}
+        = link_to location.name, location_path(location)
+
+
+    %br.clear
+- if @users
+  %h1.directory-title= (@location.name + " bitcoin traders").strip.titleize
+  .directory-content
+    %table
+      %tr
+        %th Name
+        %th Phone
+        %th Address
+        %th Skype
+      - @users.each do |user|
+        %tr.user
+          %td= link_to user.name, user_path(user)
+          %td= user.phone
+          %td= user.address
+          %td
+            - unless user.skype.empty?
+              %a{href:"skype:" + user.skype}
+                = user.skype
+    = will_paginate @users
+
+%br.clear

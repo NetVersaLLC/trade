@@ -7,12 +7,20 @@ describe User do
       :name => "Example User",
       :email => "user@example.com",
       :password => "changeme",
-      :password_confirmation => "changeme"
+      :password_confirmation => "changeme",
+      :latitude => "33.6817",
+      :longitude => "-117.88",
+      :address => "Las Vegas"
     }
   end
 
   it "should create a new instance given a valid attribute" do
     User.create!(@attr)
+  end
+
+  it "should detect locations by coordinates" do
+    user = User.create!(@attr)
+    user.geocode_locations
   end
 
   it "should require an email address" do

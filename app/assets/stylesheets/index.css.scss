@@ -25,6 +25,9 @@ section {
     text-align: center;
     > a {
       text-decoration: none;
+      > img {
+        margin: 0 10px;
+      }
     }
   }
 }
@@ -52,5 +55,6 @@ section {
   > img {
     display: inline-block;
     vertical-align: middle;
+    margin-left: 48px;
   }
 }
