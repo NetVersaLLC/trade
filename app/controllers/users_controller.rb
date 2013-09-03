@@ -33,6 +33,7 @@ SQL
   # GET /users/:id
   def show
     @user = User.find(params[:id])
+    @location = @user.locations.last
   end
 
   # The path used after sign up.
@@ -43,6 +44,11 @@ SQL
   # The url to be used after updating a resource.
   def after_update_path_for(resource)
     user_path(resource)
+  end
+
+  def update
+    super
+    current_user.update_locations
   end
 
 end

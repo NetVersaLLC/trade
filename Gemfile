@@ -9,7 +9,7 @@ gem 'uglifier', '>= 1.0.3'
 
 group :test do
   gem 'factory_girl_rails'
-  gem "cucumber-rails"
+  gem "cucumber-rails", :require => false
   gem "rspec-rails", ">= 2.12.2"
   gem "database_cleaner", ">= 1.0.0.RC1"
   gem "email_spec", ">= 1.4.0"
@@ -36,6 +36,7 @@ gem "html2haml", ">= 1.0.1", :group => :development
 gem "quiet_assets", ">= 1.0.2", :group => :development
 gem 'settingslogic'
 gem 'rails-observers'
+gem 'will_paginate'
 
 gem 'blogit', github: 'Fodoj/blogit', branch: 'rails4'
 

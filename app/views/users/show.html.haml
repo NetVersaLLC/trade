@@ -9,6 +9,8 @@
       });
       Tradebitcoin.view = new Tradebitcoin.views.Profile({user: user});
     });
+- if @location
+  = breadcrumb_for_location(@location)
 .item.profile
   .left
     %h2= @user.name

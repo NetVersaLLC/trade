@@ -26,7 +26,7 @@ img {
 }
 hr {
   border: 0px;
-  width: 800px;
+  width: 900px;
   float: left;
   clear: both;
 }
@@ -57,7 +57,7 @@ h4 {
 }
 
 #content {
-  width: 800px;
+  width: 900px;
   margin: 0px auto;
 }
 
@@ -86,14 +86,14 @@ h4 {
 }
 
 #map_canvas {
-  width: 800px;
+  width: 900px;
   height: 500px;
   margin: 0px auto;
   border: 1px solid black;
   clear: both;
 }
 #header {
-  width: 800px;
+  width: 900px;
   margin: 0px auto;
   font-size: 20px;
   height: 100px;
@@ -105,7 +105,7 @@ h4 {
   left: 115px;
 }
 #controls {
-  width: 800px;
+  width: 900px;
   height: 65px;
   margin: 0px auto;
   padding-top: 20px;
@@ -113,7 +113,7 @@ h4 {
 }
 #search {
   float: left;
-  width: 660px;
+  width: 760px;
   height: 60px;
   font-size: 38px;
 }
@@ -261,11 +261,11 @@ h4 {
 
 .profile .right {
     padding: 2px;
-    width: 446px;
+    width: 540px;
 }
 
 .profile .right #map_canvas {
-    width: 400px;
+    width: 490px;
     height: 330px;
     float: right;
     margin-top: 35px;
@@ -283,4 +283,10 @@ a.profileName{
     text-decoration: none;
 }
 
+#edit_user {
+    width: 330px;
+}
 
+.flag {
+    margin-top: -7px;
+}

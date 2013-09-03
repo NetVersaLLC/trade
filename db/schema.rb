@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130824134603) do
+ActiveRecord::Schema.define(version: 20130830104549) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -80,6 +80,15 @@ ActiveRecord::Schema.define(version: 20130824134603) do
 
   add_index "blog_posts", ["blogger_type", "blogger_id"], name: "index_blog_posts_on_blogger_type_and_blogger_id", using: :btree
 
+  create_table "locations", force: true do |t|
+    t.string  "name"
+    t.string  "short_name"
+    t.string  "location_type"
+    t.integer "parent_location_id"
+  end
+
+  add_index "locations", ["parent_location_id"], name: "index_locations_on_parent_location_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email"
     t.string   "encrypted_password",     limit: 128, default: "",    null: false
@@ -110,5 +119,12 @@ ActiveRecord::Schema.define(version: 20130824134603) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users_locations", force: true do |t|
+    t.integer "user_id"
+    t.integer "location_id"
+  end
+
+  add_index "users_locations", ["user_id", "location_id"], name: "index_users_locations_on_user_id_and_location_id", using: :btree
 
 end
