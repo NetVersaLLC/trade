@@ -112,7 +112,6 @@ ActiveRecord::Schema.define(version: 20130830104549) do
     t.datetime "updated_at"
     t.string   "yim"
     t.boolean  "show_email",                         default: false
-    t.string   "country"
     t.datetime "reset_password_sent_at"
     t.string   "unconfirmed_email"
   end

@@ -9,7 +9,8 @@ describe User do
       :password => "changeme",
       :password_confirmation => "changeme",
       :latitude => "33.6817",
-      :longitude => "-117.88"
+      :longitude => "-117.88",
+      :address => "Las Vegas"
     }
   end
 
