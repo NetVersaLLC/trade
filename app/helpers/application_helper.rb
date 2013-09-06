@@ -25,4 +25,9 @@ module ApplicationHelper
     generate_breadcrumb(elements, parent)
   end
 
+  def render_title
+    return @title if defined?(@title)
+    "Tradebitcoin.com: Buy Bitcoins, Trade Bitcoins"
+  end
+
 end
