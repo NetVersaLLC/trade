@@ -10,6 +10,7 @@ class DirectoryController < ApplicationController
 
     begin
       @location = Location.find(id)
+      @title = "#{@location.name} Bitcoin Traders - Tradebitcoin.com"
     rescue
       @location = Location.new(:name => "")
     end
