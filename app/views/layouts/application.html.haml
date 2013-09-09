@@ -4,6 +4,8 @@
     %title= render_title
     %link{:href => "http://fonts.googleapis.com/css?family=Neuton", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "http://cloud.github.com/downloads/lafeber/world-flags-sprite/flags32.css", :rel => "stylesheet", :type => "text/css"}/
+    %meta{:name => "viewport", :content => "width=950px, initial-scale=1.0"}
+
 
     %script{:language => "JavaScript", :src => "http://j.maxmind.com/app/geoip.js"}
     %script{:src => "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"}
@@ -12,27 +14,28 @@
     = csrf_meta_tags
     = yield :head
   %body
-    #header
-      %a{:href => root_path}
-        = image_tag 'logo-wide.png'
-      %ul.menu
-        %li
-          %a{:href => "/"} Map
-        %li= link_to "Directory", directory_path
-        %li= link_to "Trade Online", "http://launch.tradebitcoin.com/", :target => '_blank'
-        - if user_signed_in?
-          %li= link_to "Profile", edit_user_registration_path
-          %li= link_to 'Sign Out', destroy_user_session_path, :method => :delete
-        - else
-          %li= link_to "Join", new_user_registration_path
-          %li= link_to "Login", new_user_session_path
+    .container
+      .header
+        %a{:href => root_path}
+          = image_tag 'logo-wide.png'
+        %ul.menu
+          %li
+            %a{:href => "/"} Map
+          %li= link_to "Directory", directory_path
+          %li= link_to "Trade Online", "http://launch.tradebitcoin.com/", :target => '_blank'
+          - if user_signed_in?
+            %li= link_to "Profile", edit_user_registration_path
+            %li= link_to 'Sign Out', destroy_user_session_path, :method => :delete
+          - else
+            %li= link_to "Join", new_user_registration_path
+            %li= link_to "Login", new_user_session_path
 
-    #content
-      - unless flash.empty? 
-        - flash.each do |name, msg|
-          %p{:id => name}
-            = raw(msg)
-      = yield
+      .content
+        - unless flash.empty?
+          - flash.each do |name, msg|
+            %p{:id => name}
+              = raw(msg)
+        = yield
 
-      = render "shared/footer"
-      = render :partial => 'shared/counter'
+        = render "shared/footer"
+        = render :partial => 'shared/counter'

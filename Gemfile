@@ -6,6 +6,9 @@ gem 'mysql2'
 gem 'coffee-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'uglifier', '>= 1.0.3'
+gem 'normalize-rails'
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+    :github => 'anjlab/bootstrap-rails'
 
 group :test do
   gem 'factory_girl_rails'
@@ -37,6 +40,7 @@ gem "quiet_assets", ">= 1.0.2", :group => :development
 gem 'settingslogic'
 gem 'rails-observers'
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 gem 'blogit', github: 'Fodoj/blogit', branch: 'rails4'
 

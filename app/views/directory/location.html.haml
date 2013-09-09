@@ -8,13 +8,11 @@
         - if location.location_type == 'country'
           %span{class: "flag " + location.short_name.downcase}
         = link_to location.name, location_path(location)
-
-
     %br.clear
 - if @users
   %h1.directory-title= (@location.name + " bitcoin traders").strip.titleize
   .directory-content
-    %table
+    %table.table.table-striped
       %tr
         %th Name
         %th Phone
@@ -29,6 +27,7 @@
             - unless user.skype.empty?
               %a{href:"skype:" + user.skype}
                 = user.skype
-    = will_paginate @users
+    .text-center= will_paginate @users, renderer: BootstrapPagination::Rails, bootstrap: 3
+
 
 %br.clear
