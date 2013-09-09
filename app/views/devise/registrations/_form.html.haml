@@ -1,87 +1,69 @@
 = devise_error_messages!
-%p
+.form-group
   = f.label :email
-  %br/
-  = f.text_field :email, :autocomplete=>"off"
-  %br/
-  %small Your email.
+  = f.text_field :email, :autocomplete=>"off", :class => "form-control input-sm"
+  .help-block Your email.
 
 - if (current_user && current_user.email_required?) || resource.new_record?
-  %p
+  .form-group
     = f.label :password
-    %br/
-    = f.password_field :password
-    %br/
-    - if current_user
-      %small Leave blank if you don't want to change it.
-    - else
-      %small Your password.
-  %p
+    = f.password_field :password, :class => "form-control input-sm"
+    .help-block
+      - if current_user
+        Leave blank if you don't want to change it.
+      - else
+        Your password.
+  .form-group
     = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-    %br/
-    %small Password confirmation.
+    = f.password_field :password_confirmation, :class => "form-control input-sm"
+    .help-block Password confirmation.
+
 - if current_user && current_user.current_password_required?
-  %p
+  .form-group
     = f.label :current_password, raw("<b>Current password</b>")
-    %br/
-    = f.password_field :current_password
-    %br/
-    %small Enter current password to update your details.
-%p
+    = f.password_field :current_password, :class => "form-control input-sm"
+    .help-block Enter current password to update your details.
+.form-group
   = f.label :name
-  %br/
-  = f.text_field :name
-  %br/
-  %small Your name.
-%p
+  = f.text_field :name, :class => "form-control input-sm"
+  .help-block Your name.
+.form-group
   = f.label :address
-  %br/
-  = f.text_field :address
-  %br/
-  %small
+  = f.text_field :address, :class => "form-control input-sm"
+  .help-block
     Enter the physical address or intersection
     %br/
     where you would meet for trades.
-%p
+
+.form-group
   = f.label :phone
-  %br/
-  = f.text_field :phone
-  %br/
-  %small Preferred phone number.
-%p
+  = f.text_field :phone, :class => "form-control input-sm"
+  .help-block Preferred phone number.
+.form-group
   = f.label :skype
-  %br/
-  = f.text_field :skype
-  %br/
-  %small
+  = f.text_field :skype, :class => "form-control input-sm"
+  .help-block
     %a{:href => "http://www.skype.com", :target => "_blank"} Skype
     name.
-%p
+.form-group
   = f.label :aim
-  %br/
-  = f.text_field :aim
-  %br/
-  %small
+  = f.text_field :aim, :class => "form-control input-sm"
+  .help-block
     %a{:href => "http://www.aim.com", :target => "_blank"} AIM
     Account.
-%p
+.form-group
   = f.label :yim
-  %br/
-  = f.text_field :yim
-  %br/
-  %small
+  = f.text_field :yim, :class => "form-control input-sm"
+  .help-block
     %a{:href => "http://messenger.yahoo.com/", :target => "_blank"} Yahoo Messenger
     account.
-%p
+.form-group
   = f.label :jabber
-  %br/
-  = f.text_field :jabber
-  %br/
-  %small
+  = f.text_field :jabber, :class => "form-control input-sm"
+  .help-block
     %a{:href => "http://register.jabber.org/", :target => "_blank"} Jabber
     account.
-= button_tag action, :type => "button"
+.form-group
+  = button_tag action, :type => "button", :class => "btn btn-primary"
 = f.hidden_field :latitude
 = f.hidden_field :longitude

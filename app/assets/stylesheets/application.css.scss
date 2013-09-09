@@ -8,30 +8,44 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require normalize-rails
  *= require_self
  *= require_tree .
  */
 
 @font-face {
-  font-family: Calibri; 
+  font-family: Calibri;
   src: url(calibri.ttf);
 }
 
-body {
-  font-family: 'Calibri', Times, "Times New Roman", serif;
-  font-size: 15px;
+$font-family-sans-serif: 'Calibri', Times, "Times New Roman", serif;
+$font-family-serif: $font-family-sans-serif;
+$font-family-base: $font-family-sans-serif;
+$font-size-base: 15px;
+$container-desktop: 940px;
+$container-lg-desktop: $container-desktop;
+
+@import "twitter/bootstrap";
+
+.container {
+  max-width: 940px;
 }
+
+
 img {
   border: 0px;
 }
+
 hr {
   border: 0px;
-  width: 900px;
+  width: 100%;
   float: left;
   clear: both;
 }
+
 a, a:hover, a:visited {
   color: #000;
+  text-decoration: underline;
 }
 em {
   font-style: normal;
@@ -39,12 +53,21 @@ em {
   font-weight: bold;
   color: #a00;
 }
+
 h1 {
   font-size: 20px;
+  font-weight: bold;
 }
-h3 {
-    text-align: center;
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
 }
+
+.landing-text {
+  padding-top: 30px;
+}
+
 h4 {
   display: inline;
   font-size: 28px;
@@ -54,11 +77,6 @@ h4 {
 
 #notice {
   color: green;
-}
-
-#content {
-  width: 900px;
-  margin: 0px auto;
 }
 
 #error_explanation {
@@ -86,18 +104,23 @@ h4 {
 }
 
 #map_canvas {
-  width: 900px;
+  width: 100%;
   height: 500px;
   margin: 0px auto;
   border: 1px solid black;
   clear: both;
 }
-#header {
-  width: 900px;
-  margin: 0px auto;
+
+.header {
   font-size: 20px;
   height: 100px;
+  padding-top: 8px;
 }
+
+.content {
+  padding-top: 8px;
+}
+
 #instructions {
   position: relative;
   font-size: 15px;
@@ -250,43 +273,47 @@ h4 {
     clear: both;
 }
 
-.profile a {
+.profile {
+  a {
     text-decoration: none;
-}
+  }
 
-.profile .left {
-    width: 330px;
-    padding: 10px;
-}
-
-.profile .right {
-    padding: 2px;
-    width: 540px;
-}
-
-.profile .right #map_canvas {
-    width: 490px;
+  #map_canvas {
+    width: 100%;
     height: 330px;
     float: right;
     margin-top: 35px;
-}
+  }
 
-.profile .value {
+  .value {
     margin-bottom: 20px;
+  }
+
+  h2, .edit-button {
+    display: inline-block;
+  }
+
+  .edit-button {
+    a {
+      color: white;
+    }
+    position: relative;
+    top: -4px;
+    margin-left: 5px;
+  }
+
 }
 
-.profile .label {
-    font-weight: bold;
+.profile-label {
+  font-weight: bold;
 }
+
 
 a.profileName{
     text-decoration: none;
 }
 
-#edit_user {
-    width: 330px;
-}
-
 .flag {
     margin-top: -7px;
 }
+

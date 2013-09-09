@@ -11,27 +11,30 @@
     });
 - if @location
   = breadcrumb_for_location(@location)
-.item.profile
-  .left
+.row.profile
+  .col-md-5
     %h2= @user.name
+    - if current_user and current_user.id == @user.id
+      .edit-button= link_to "edit profile", edit_user_registration_path, :class => "btn-success btn-sm"
+    %br.clear
     %img.gravatar{src: "http://www.gravatar.com/avatar/" + @user.gravatar,  alt: "Gravatar"}
     %br.clear
     %br.clear
 
     - unless @user.address.empty?
-      .label
+      .profile-label
         Address:
       .value
         = @user.address
     - unless @user.phone.empty?
-      .label
+      .profile-label
         Phone:
       .value
         %a{href: "callto:" + @user.phone}
           = @user.phone
 
     - unless (@user.aim + @user.skype + @user.yim + @user.jabber).empty?
-      .label Contact online:
+      .profile-label Contact online:
     - unless @user.aim.empty?
       %a{href:"aim:goim?screenname=" + @user.aim + "&message=Bitcoin+trade."}
         %img.icon{src:"/assets/aol_64.png", alt:"AOL Instant Messenger", title:"AIM User: " + @user.aim}
@@ -46,7 +49,28 @@
         %img.icon{src:"/assets/jabber_icon_64x64.png", alt:"Jabber", title:"Jabber: " + @user.jabber}
     %br.clear
 
-  .right
+  .col-md-7
     #map_canvas
 
 %br.clear
+
+#disqus_thread
+:javascript
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'tradebitcoin'; // required: replace example with your forum shortname
+  var disqus_identifier = 'user#{@user.id}';
+  var disqus_title = '#{@title}';
+  var disqus_url = '#{user_url(@user)}';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+%noscript
+  Please enable JavaScript to view the
+  %a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus.
+%a.dsq-brlink{:href => "http://disqus.com"}
+  comments powered by
+  %span.logo-disqus Disqus

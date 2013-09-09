@@ -8,6 +8,10 @@ FactoryGirl.define do
     password_confirmation 'changeme'
     address 'Los Angeles, CA'
     skype 'btctrader'
+    jabber ''
+    aim ''
+    yim ''
+    phone ''
     # required if the Devise Confirmable module is used
     #confirmed_at Time.now
   end
