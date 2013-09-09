@@ -14,6 +14,9 @@
 .row.profile
   .col-md-5
     %h2= @user.name
+    - if current_user and current_user.id == @user.id
+      .edit-button= link_to "edit profile", edit_user_registration_path, :class => "btn-success btn-sm"
+    %br.clear
     %img.gravatar{src: "http://www.gravatar.com/avatar/" + @user.gravatar,  alt: "Gravatar"}
     %br.clear
     %br.clear
