@@ -33,6 +33,9 @@ Trade::Application.routes.draw do
     authenticated :user do
       root :to => 'users#edit', as: :authenticated_root
     end
+    authenticated :admin_user do
+      root :to => 'admin/dashboard#index', as: :authenticated_admin_root
+    end
   end
 
 end
