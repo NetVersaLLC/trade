@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
   end
 
   def gravatar
-    Digest::MD5.hexdigest(email.downcase.strip)
+    Digest::MD5.hexdigest(!email.nil? ? email.downcase.strip : '')
   end
 
   def geocode_locations
